@@ -42,7 +42,7 @@ All detailed guides are located in the [`docs/`](docs/) folder:
 ## Minimum Requirements
 
 - Oracle Cloud account (VMs in the same AD/FD)
-- 1 main VM (Ambari Server) with **≥ 8 GB RAM**
+- 1 main VM (Ambari Server) with **≥ 4 GB RAM**
 - Up to 3 auxiliary VMs (worker nodes)
 - SSH access with public key authentication
 - All VMs running Ubuntu 22.04 LTS
