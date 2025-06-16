@@ -28,7 +28,7 @@ All detailed guides are located in the [`docs/`](docs/) folder:
 
 | Step | Document | Description |
 |------|----------|-------------|
-| 01 | [`00-requirements.md`](docs/00-requirements.md) | System and software requirements |
+| 01 | [`00-requirements.md`](./docs/00-requirements.md) | System and software requirements |
 | 02 | [`01-vms-setup.md`](docs/01-vms-setup.md) | VM creation and basic setup |
 | 03 | [`02-ssh-setup.md`](docs/02-ssh-setup.md) | Passwordless SSH between nodes |
 | 04 | [`03-hosts-config.md`](docs/03-hosts-config.md) | `/etc/hosts` configuration |
