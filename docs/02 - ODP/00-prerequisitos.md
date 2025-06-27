@@ -222,8 +222,6 @@ Para que o Ambari possa se comunicar corretamente durante a configuração e ope
 
 ### 11.1 Opção rápida: Desabilitar temporariamente o firewall
 
-Se o ambiente permitir, você pode desabilitar temporariamente o firewall do sistema operacional para evitar bloqueios durante a instalação e configuração inicial do Ambari. **Esta opção é recomendada apenas em ambientes de laboratório ou testes!**
-
 Execute em **todos os nós**:
 
 ```bash
