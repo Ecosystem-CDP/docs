@@ -4,10 +4,12 @@ Este documento descreve todos os requisitos mínimos — de infraestrutura, soft
 
 ## 1. Infra-estrutura mínima
 
+Abaixo está uma listagem de recapitulação do que é feito na documentação referente à OCI, portanto, verifique está de acordo com estes padrões.
+
 | Papel do nó | OCPU mín. | Memória mín. | SO homologado |
 |-------------|-----------|--------------|---------------|
 | master      | 4 OCPU    | 16 GiB       | Ubuntu 22.04 LTS / Oracle Linux 8 |
-| worker × 3  | 2 OCPU    |  8 GiB       | Ubuntu 22.04 LTS / Oracle Linux 8 |
+| node × 3  | 2 OCPU    |  8 GiB       | Ubuntu 22.04 LTS / Oracle Linux 8 |
 
 > Substitua as quantidades conforme sua carga de trabalho. No OCI, o shape de referência é **VM.Standard.E4.Flex** com 2-4 OCPU e 8-16 GiB de RAM.
 
@@ -41,7 +43,7 @@ Em cenários offline, copie os arquivos para `/opt/odp-repo/` de **todos** os n�
 
 ## 4. Usuários, chaves e permissões
 
-* Usuário padrão do SO com privilégio sudo (`ubuntu` ou `opc`).
+* Usuário padrão do SO com privilégio sudo (`ubuntu`).
 * Chave SSH RSA/ECDSA carregada no OCI **ou** distribuída manualmente (`~/.ssh/id_rsa`).
 * Fuso horário configurado e serviço NTP ativo (`chrony` ou `systemd-timesyncd`).
 
@@ -78,7 +80,7 @@ Insira o texto abaixo no arquivo que foi criado:
 # ——— Desempenho e estabilidade para Hadoop / Spark ———
 vm.swappiness                 = 1
 vm.overcommit_memory          = 1
-vm.max_map_count              = 262144        # necessário para Elasticsearch / Solr
+vm.max_map_count              = 262144
 
 # Buffers de rede
 net.core.somaxconn            = 1024
@@ -150,7 +152,7 @@ ssh-keygen -b 4096 -t rsa -C "odp-cluster" -N "" -f ~/.ssh/id_rsa
 
 ### 8.3 Copiar a chave pública manualmente para cada nó
 
-No **nó master**, execute um comando para cada nó, conforme o nome definido:
+No **nó master**, execute um comando para cada nó, conforme o nome definido (também para a própria master):
 ```bash
 ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@master
 ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node1
@@ -158,27 +160,101 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node2
 ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node3
 ```
 
-
 A saída deve exibir o FQDN do nó seguido de `OK`, sem solicitar senha.
 
+### 8.4 Ajuste das permissões dos arquivos de chave SSH
+
+Após copiar a chave pública do master para cada nó, **em cada nó** (master, node1, node2, node3), execute:
+
+```bash
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
 ---
+## 9. Definição do Hostname em Cada Máquina
 
-### 9.3 Copiar a chave pública para cada nó
+Para garantir que cada nó do cluster seja identificado corretamente na rede interna, defina o hostname de cada máquina conforme a função que ela desempenha. Execute o comando correspondente **em cada nó**:
 
-Substitua `<hostX>` pelos FQDNs ou endereços privados:
+- No master:
+```bash
+sudo hostnamectl set-hostname master
+```
 
+- No node1:
+```bash
+sudo hostnamectl set-hostname node1
+```
 
+- No node2:
+```bash
+sudo hostnamectl set-hostname node2
+```
 
+- No node3:
+```bash
+sudo hostnamectl set-hostname node3
+```
+Após isso, por garantia, reinicialize as máquinas, para que as definições de hostname certamente estejam em vigor.
 
+## 10. Configuração de DNS Interno (/etc/hosts)
 
-## 9. Checklist rápido antes da instalação
+Garanta que todos os nós resolvam corretamente os nomes internos do cluster.
+Edite o arquivo `/etc/hosts` em **todos os nós** e adicione (ajuste os IPs conforme sua rede):
+Exemplo com IP's privados quaisquer:
 
-- [ ] Todos os nós com hostname FQDN resolvendo via `/etc/hosts` ou DNS interno.
-- [ ] Porta 8080 acessível externamente (Ambari).
-- [ ] Chave GPG importada com `gpg --dearmor` em `/etc/apt/trusted.gpg.d/`.
-- [ ] Repositório Clemlab adicionado ou arquivos `repos*.tar.gz` extraídos localmente.
-- [ ] NTP sincronizado e relógio consistente entre os nós.
+```bash
+10.0.0.10 master
+10.0.0.11 node1
+10.0.0.12 node2
+10.0.0.13 node3
+```
+Após isso, verifique em cada nó:
+```bash
+hostname -f
+ping master
+ping node1
+ping node2
+ping node3
+```
+## 11. Configuração do iptables (Firewall)
 
+Para que o Ambari possa se comunicar corretamente durante a configuração e operação do cluster, é fundamental garantir que as portas necessárias estejam abertas em todas as máquinas (master, node1, node2, node3).
+
+### 11.1 Opção rápida: Desabilitar temporariamente o firewall
+
+Se o ambiente permitir, você pode desabilitar temporariamente o firewall do sistema operacional para evitar bloqueios durante a instalação e configuração inicial do Ambari. **Esta opção é recomendada apenas em ambientes de laboratório ou testes!**
+
+Execute em **todos os nós**:
+
+```bash
+sudo ufw disable
+sudo iptables -X
+sudo iptables -t nat -F
+sudo iptables -t nat -X
+sudo iptables -t mangle -F
+sudo iptables -t mangle -X
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+```
+No Ubuntu, mesmo com o firewall desativado, ainda é necessário que seja realizada uma validação para que as portas das máquinas, todas as máquinas, estejam liberadas, portanto, realize os comandos abaixo também:
+
+```bash
+sudo ufw allow 22/tcp # SSH
+sudo ufw allow 8080/tcp # Ambari Web
+sudo ufw allow 8440/tcp # Ambari Agent
+sudo ufw allow 8441/tcp # Ambari Agent
+sudo ufw reload
+
+sudo iptables -I INPUT -p tcp --dport 22 -j ACCEPT
+sudo iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
+sudo iptables -I INPUT -p tcp --dport 8440 -j ACCEPT
+sudo iptables -I INPUT -p tcp --dport 8441 -j ACCEPT
+sudo netfilter-persistent save # ou sudo service iptables save
+```
+Por fim, apenas por precaução, realize o (`sudo ufw disable`) para certificar-se de que o firewall está desativado, este atrapalha a instalação do Ambari e ODP e as configurações de segurança serão realizadas na OCI.
+
+---
 Após cumprir todos os itens acima, prossiga para `02 - ODP/01-configuracao-repositorio.md`, onde será configurado o repositório e iniciada a instalação do Ambari.
 
 
