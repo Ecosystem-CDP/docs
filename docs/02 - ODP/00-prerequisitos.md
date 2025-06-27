@@ -138,6 +138,8 @@ sudo ufw reload
 
 Para que o Ambari Server possa instalar automaticamente os agentes e orquestrar comandos em todos os nós, é imprescindível habilitar acesso SSH sem senha a partir do nó **master** para cada **node**.
 
+Detalho ainda que caso o procedimento abaixo não funcione adequadamente, recomendo que vá em [Problemas conhecidos](./XX-problemas-conhecidos.md), e verifique a configuração de SSH alternativa, mas com ações manuais em cada nó.
+
 > No laboratório utilizamos o usuário padrão `ubuntu`, já pertencente ao grupo *sudo*.
 > Caso utilize outro usuário, certifique-se de conceder sudo *NOPASSWD* em `/etc/sudoers`.
 
