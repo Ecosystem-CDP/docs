@@ -13,6 +13,8 @@ Abaixo está uma listagem de recapitulação do que é feito na documentação r
 | master      | 4 OCPU    | 16 GiB       | Ubuntu 22.04 LTS / Oracle Linux 8 |
 | node × 3  | 2 OCPU    |  8 GiB       | Ubuntu 22.04 LTS / Oracle Linux 8 |
 
+Obs: Recomendo o uso do Ubuntu pois os próximos passos foram realizados numa máquina Ubuntu.
+
 > Substitua as quantidades conforme sua carga de trabalho. No OCI, o shape de referência é **VM.Standard.E4.Flex** com 2-4 OCPU e 8-16 GiB de RAM.
 
 ### Armazenamento
