@@ -1,6 +1,8 @@
-# 00 • prérequisitos
+# 00 • pré-requisitos
 
 Este documento descreve todos os requisitos mínimos — de infraestrutura, software e acesso — para que a instalação da OpenSource Data Platform (ODP) 1.2.4.0 seja reproduzível em qualquer ambiente Oracle Cloud Infrastructure (OCI) ou bare metal compatível.
+
+Nos tópicos 01, 02, 03 e 04 abaixo, temos algumas informações pertinentes de revisão e conhecimento geral sobre o processo, portanto, é interessante que o leitor confirme que suas máquinas têm capacidade de hardware suficiente e que caso seja de seu interesse, entre nas documentações oficiais da Clemlab e da OCI para mais detalhes.
 
 ## 1. Infra-estrutura mínima
 
@@ -97,7 +99,8 @@ sudo sysctl --system
 ```
 
 
-### 5.4 Desativar Transparent Huge Pages (THP)
+### 5.3.2 Definir limites de arquivos e processos
+Ainda em cada nó, crie o arquivo de limites:
 ```bash
 sudo tee /etc/security/limits.d/99-odp.conf <<'EOF'
 ```
@@ -108,7 +111,7 @@ Insira no arquivo as linhas abaixo:
 * soft  nproc  65536
 * hard  nproc  65536
 ```
-Dê o seguinte comando:
+Para garantir que o módulo pam_limtes está habilitado para novas sessões, dê o seguinte comando:
 ```bash
 grep -q pam_limits.so /etc/pam.d/common-session || \
 echo "session required pam_limits.so" | sudo tee -a /etc/pam.d/common-session
@@ -177,22 +180,22 @@ Para garantir que cada nó do cluster seja identificado corretamente na rede int
 
 - No master:
 ```bash
-sudo hostnamectl set-hostname master
+sudo hostnamectl set-hostname master.clemlab.local
 ```
 
 - No node1:
 ```bash
-sudo hostnamectl set-hostname node1
+sudo hostnamectl set-hostname node1.clemlab.local
 ```
 
 - No node2:
 ```bash
-sudo hostnamectl set-hostname node2
+sudo hostnamectl set-hostname node2.clemlab.local
 ```
 
 - No node3:
 ```bash
-sudo hostnamectl set-hostname node3
+sudo hostnamectl set-hostname node3.clemlab.local
 ```
 Após isso, por garantia, reinicialize as máquinas, para que as definições de hostname certamente estejam em vigor.
 
@@ -203,10 +206,10 @@ Edite o arquivo `/etc/hosts` em **todos os nós** e adicione (ajuste os IPs conf
 Exemplo com IP's privados quaisquer:
 
 ```bash
-10.0.0.10 master
-10.0.0.11 node1
-10.0.0.12 node2
-10.0.0.13 node3
+10.0.0.10  master.clemlab.local master
+10.0.0.11  node1.clemlab.local  node1
+10.0.0.12  node2.clemlab.local  node2
+10.0.0.13  node3.clemlab.local  node3
 ```
 Após isso, verifique em cada nó:
 ```bash
@@ -250,7 +253,7 @@ sudo iptables -I INPUT -p tcp --dport 8440 -j ACCEPT
 sudo iptables -I INPUT -p tcp --dport 8441 -j ACCEPT
 sudo netfilter-persistent save # ou sudo service iptables save
 ```
-Por fim, apenas por precaução, realize o (`sudo ufw disable`) para certificar-se de que o firewall está desativado, este atrapalha a instalação do Ambari e ODP e as configurações de segurança serão realizadas na OCI.
+Por fim, apenas por precaução, realize o (`sudo ufw disable`) para certificar-se de que o firewall está desativado, este atrapalha a instalação do Ambari e ODP e as configurações de segurança foram realizadas na OCI.
 
 ---
 Após cumprir todos os itens acima, prossiga para `02 - ODP/01-configuracao-repositorio.md`, onde será configurado o repositório e iniciada a instalação do Ambari.
