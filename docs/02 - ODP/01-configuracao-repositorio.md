@@ -1,4 +1,4 @@
-## Configuração do Repositório ODP
+## 01 • Configuração do Repositório ODP
 
 1. Importe a chave GPG:
 ```bash
