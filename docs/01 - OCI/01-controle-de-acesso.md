@@ -68,6 +68,84 @@ Se já não estiver no painel da VCN:
 ![Configuração da sub-rede pública 2](../../assets/images/image5.png)
 ---
 
+## 4. Criação da sub-rede privada
+A sub-rede privada é utilizada para hospedar instâncias que não precisam de acesso direto à internet, como nós de processamento de dados ou serviços internos do cluster. O tráfego externo dessas instâncias pode ser realizado por meio de um NAT Gateway.
+
+Se já não estiver no painel da VCN:
+
+1. No painel da Oracle Cloud Infrastructure (OCI), acesse:
+   - **Menu** > **Rede** > **Redes virtuais em nuvem (VCN)**
+2. Clique sobre a VCN criada anteriormente (`vcn-datalake`).
+3. No menu lateral da VCN, selecione **Sub-redes**.
+4. Clique em **Criar Sub-rede**.
+
+### Parâmetros recomendados
+
+- **Nome da sub-rede:** `subnet-priv-datalake`
+- **Tipo de sub-rede:** Privada
+- **Bloco CIDR IPv4:** `10.0.2.0/24`
+- **DNS Label:** `privdatalake`
+- **Gateway NAT:** Selecione o NAT Gateway criado para a VCN (`natgw-datalake`)
+- **Tabela de rotas:** Selecione a tabela de rotas associada ao NAT Gateway
+- **Lista de segurança:** Selecione a lista de segurança default do compartimento
+
+> O bloco CIDR `10.0.2.0/24` permite até 254 endereços IP privados, suficiente para hospedar múltiplos nós internos do cluster, mantendo-os isolados de acessos externos diretos.
+
+---
+![Configuração da sub-rede privada](../../assets/images/image6.png)
+---
+
+## 5. Criação dos Gateways de Internet e NAT
+
+Os gateways de Internet e NAT são componentes essenciais para permitir que as instâncias da VCN tenham comunicação externa, seja de forma pública (Internet Gateway) ou privada (NAT Gateway). O Internet Gateway permite acesso direto à internet para sub-redes públicas, enquanto o NAT Gateway permite que instâncias em sub-redes privadas acessem a internet para atualizações e downloads, sem expor seus IPs diretamente.
+
+Se já não estiver no painel da VCN:
+
+1. No painel da Oracle Cloud Infrastructure (OCI), acesse:
+   - **Menu** > **Rede** > **Redes virtuais em nuvem (VCN)**
+2. Clique sobre a VCN criada anteriormente (`vcn-datalake`).
+
+---
+
+### 5.1 Criação do Internet Gateway
+
+3. No menu lateral da VCN, selecione **Gateways de Internet**.
+4. Clique em **Criar Gateway de Internet**.
+
+#### Parâmetros recomendados
+
+- **Nome do Internet Gateway:** `igw-datalake`
+- **Compartment:** Selecione o compartimento do projeto
+- **Route Table Association:** Selecione a tabela de rotas padrão da VCN (`Default Route Table for vcn-datalake`)
+
+> O Internet Gateway permite que as instâncias em sub-redes públicas comuniquem-se com a internet, sendo essencial para acesso SSH, atualizações e serviços web.
+
+---
+
+### 5.2 Criação do NAT Gateway
+
+5. No menu lateral da VCN, selecione **NAT Gateways**.
+6. Clique em **Criar NAT Gateway**.
+
+#### Parâmetros recomendados
+
+- **Nome do NAT Gateway:** `natgw-datalake`
+- **Compartment:** Selecione o compartimento do projeto
+- **Ephemeral Public IP Address:** Deixe selecionada a opção padrão (IP público efêmero)
+- **Route Table Association:** Selecione a tabela de rotas padrão da VCN (`Default Route Table for vcn-datalake`)
+
+> O NAT Gateway permite que instâncias em sub-redes privadas acessem a internet para atualizações e downloads, sem expor seus IPs privados diretamente à internet.
+
+---
+
+> Após criar ambos os gateways, vamos ajustar as tabelas de rotas de cada sub-rede, para que o tráfego de saída da sub-rede pública utilize o Internet Gateway e o tráfego da sub-rede privada utilize o NAT Gateway.
+
+---
+![Configuração de gateway para internet](../../assets/images/image7.png)
+![Configuração de gateway NAT](../../assets/images/image8.png)
+
+
+
 
 
 
