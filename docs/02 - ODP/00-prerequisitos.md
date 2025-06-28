@@ -1,6 +1,6 @@
 # 00 • pré-requisitos
 
-Este documento descreve todos os requisitos mínimos — de infraestrutura, software e acesso — para que a instalação da OpenSource Data Platform (ODP) 1.2.4.0 seja reproduzível em qualquer ambiente Oracle Cloud Infrastructure (OCI) ou bare metal compatível.
+Este documento descreve todos os requisitos mínimos — de infraestrutura, software e acesso — para que a instalação da OpenSource Data Platform (ODP) 1.2.4.0 seja feita em qualquer ambiente Oracle Cloud Infrastructure (OCI) ou bare metal compatível.
 
 Nos tópicos 01, 02, 03 e 04 abaixo, temos algumas informações pertinentes de revisão e conhecimento geral sobre o processo, portanto, é interessante que o leitor confirme que suas máquinas têm capacidade de hardware suficiente e que caso seja de seu interesse, entre nas documentações oficiais da Clemlab e da OCI para mais detalhes.
 
@@ -43,7 +43,7 @@ A instalação pode ser feita de duas formas:
    * `repos.tar.gz`
    * `repos-utils.tar.gz`
 
-Em cenários offline, copie os arquivos para `/opt/odp-repo/` de **todos** os nós e aponte o APT/YUM para o caminho local.
+Em cenários offline, copie os arquivos para `/opt/odp-repo/` de **todos** os nós e aponte o APT/YUM para o caminho local. Neste documento, iremos consumir o repositório fonte da Clemlab, inicialmente.
 
 ## 4. Usuários, chaves e permissões
 
@@ -121,7 +121,10 @@ echo "session required pam_limits.so" | sudo tee -a /etc/pam.d/common-session
 
 ## 6. Sincronização de tempo
 ```bash
-sudo systemctl enable --now chronyd # Ubuntu ou Oracle Linux
+sudo apt update
+sudo apt install -y chrony
+sudo systemctl enable --now chronyd
+sudo systemctl status chronyd
 chronyc sources -v # verificação
 ```
 ## 7. Portas e firewall
@@ -135,50 +138,7 @@ sudo ufw allow 8080/tcp # Ambari Web
 sudo ufw allow 8440:8441/tcp # Ambari Agent ↔ Server
 sudo ufw reload
 ```
-
-## 8. Acesso SSH sem Senha (Password-less SSH)
-
-Para que o Ambari Server possa instalar automaticamente os agentes e orquestrar comandos em todos os nós, é imprescindível habilitar acesso SSH sem senha a partir do nó **master** para cada **node**.
-
-Detalho ainda que caso o procedimento abaixo não funcione adequadamente, recomendo que vá em [Problemas conhecidos](./XX-problemas-conhecidos.md), e verifique a configuração de SSH alternativa, mas com ações manuais em cada nó.
-
-> No laboratório utilizamos o usuário padrão `ubuntu`, já pertencente ao grupo *sudo*.
-> Caso utilize outro usuário, certifique-se de conceder sudo *NOPASSWD* em `/etc/sudoers`.
-
-### 8.1 Verificar se o OpenSSH está instalado
-```bash
-sudo apt install -y openssh-server openssh-client
-```
-
-### 8.2 Gerar o par de chaves no nó *master*
-```bash
-ssh-keygen -b 4096 -t rsa -C "odp-cluster" -N "" -f ~/.ssh/id_rsa
-```
-* Aceite o caminho padrão `~/.ssh/id_rsa`.
-* A opção `-N ""` cria a chave sem passphrase, requisito para automação.
-
-### 8.3 Copiar a chave pública manualmente para cada nó
-
-No **nó master**, execute um comando para cada nó, conforme o nome definido (também para a própria master):
-```bash
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@master
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node1
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node2
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node3
-```
-
-A saída deve exibir o FQDN do nó seguido de `OK`, sem solicitar senha.
-
-### 8.4 Ajuste das permissões dos arquivos de chave SSH
-
-Após copiar a chave pública do master para cada nó, **em cada nó** (master, node1, node2, node3), execute:
-
-```bash
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/authorized_keys
-```
----
-## 9. Definição do Hostname em Cada Máquina
+## 8. Definição do Hostname em Cada Máquina
 
 Para garantir que cada nó do cluster seja identificado corretamente na rede interna, defina o hostname de cada máquina conforme a função que ela desempenha. Execute o comando correspondente **em cada nó**:
 
@@ -202,6 +162,49 @@ sudo hostnamectl set-hostname node2.clemlab.local
 sudo hostnamectl set-hostname node3.clemlab.local
 ```
 Após isso, por garantia, reinicialize as máquinas, para que as definições de hostname certamente estejam em vigor.
+
+## 9. Acesso SSH sem Senha (Password-less SSH)
+
+Para que o Ambari Server possa instalar automaticamente os agentes e orquestrar comandos em todos os nós, é imprescindível habilitar acesso SSH sem senha a partir do nó **master** para cada **node**.
+
+Detalho ainda que caso o procedimento abaixo não funcione adequadamente, recomendo que vá em [Problemas conhecidos](./XX-problemas-conhecidos.md), e verifique a configuração de SSH alternativa, mas com ações manuais em cada nó.
+
+> No laboratório utilizamos o usuário padrão `ubuntu`, já pertencente ao grupo *sudo*.
+> Caso utilize outro usuário, certifique-se de conceder sudo *NOPASSWD* em `/etc/sudoers`.
+
+### 9.1 Verificar se o OpenSSH está instalado
+```bash
+sudo apt install -y openssh-server openssh-client
+```
+
+### 9.2 Gerar o par de chaves no nó *master*
+```bash
+ssh-keygen -b 4096 -t rsa -C "odp-cluster" -N "" -f ~/.ssh/id_rsa
+```
+* Aceite o caminho padrão `~/.ssh/id_rsa`.
+* A opção `-N ""` cria a chave sem passphrase, requisito para automação.
+
+### 9.3 Copiar a chave pública manualmente para cada nó
+
+No **nó master**, execute um comando para cada nó, conforme o nome definido (também para a própria master):
+```bash
+ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@master.clemlab.local
+ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node1.clemlab.local
+ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node2.clemlab.local
+ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node3.clemlab.local
+```
+
+A saída deve exibir o FQDN do nó seguido de `OK`, sem solicitar senha.
+
+### 8.4 Ajuste das permissões dos arquivos de chave SSH
+
+Após copiar a chave pública do master para cada nó, **em cada nó** (master, node1, node2, node3), execute:
+
+```bash
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
+---
 
 ## 10. Configuração de DNS Interno (/etc/hosts)
 
