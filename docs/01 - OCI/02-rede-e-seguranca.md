@@ -134,6 +134,48 @@ Se já não estiver no painel da VCN:
 ![Configuração de gateway NAT](../../assets/images/image8.png)
 ---
 
-### 4.3 Criação do NSG (Network Security Groups)
+### 4.3 Criação do NSG
+Um **Network Security Group (NSG)** permite definir regras de segurança de rede de forma mais flexível e granular do que as listas de segurança tradicionais. Com um NSG, você pode criar grupos de instâncias ou outros recursos de rede e aplicar regras de entrada e saída para esses grupos, independentemente da sub-rede em que estão. Vamos usar para as regras de acesso com IP privado nas instâncias criadas, fundamental para acesso entre elas.
+
+1. No painel da Oracle Cloud Infrastructure (OCI), acesse:
+   - **Menu** > **Rede** > **VCN**
+2. Clique sobre a VCN criada anteriormente e vá em **Security**.
+3. Clique em **Criar Network Security Group** para criar um novo NSG.
+
+---
+![Painel para NSG](../../assets/images/image9.png)
+![Criação de NSG](../../assets/images/image10.png)
+---
+
+> Conforme pode ser visto acima, é necessário colocar também as regras para as porta 8080, 8440 e 8441. No exemplo aparece apenas a porta 8080 mas neste mesmo lugar, adicione regras para as portas 8440 e 8441.
+
+## 5. Configuração de Portas Obrigatórias para ODP, Ambari e Hadoop
+
+Para o funcionamento correto do cluster Hadoop/Spark com ODP e Ambari, é necessário liberar o tráfego das seguintes portas nas **Listas de Segurança (Security List)** e, nos **Network Security Groups (NSG)** associados à VCN e às sub-redes do projeto:
+
+| Porta  | Protocolo | Serviço associado           | Função principal                         |
+|--------|-----------|----------------------------|------------------------------------------|
+| 8080   | TCP       | Ambari Server (Web UI)     | Interface web de administração do cluster|
+| 8440   | TCP       | Ambari Agent ↔ Server      | Comunicação segura entre agentes e server|
+| 8441   | TCP       | Ambari Agent ↔ Server      | Comunicação segura entre agentes e server|
+
+### Como configurar
+
+1. **Acesse a Security List** ou o **NSG** associado à sua sub-rede pública/privada.
+2. Adicione regras de entrada (Ingress Rules) permitindo tráfego TCP nas portas 8080, 8440 e 8441, conforme exemplo abaixo:
+
+#### Exemplo de regra para Security List
+
+| Tipo de Tráfego | Protocolo | Porta de Destino | Origem           | Descrição                     |
+|-----------------|-----------|------------------|------------------|-------------------------------|
+| TCP             | TCP       | 8080             | 0.0.0.0/0        | Ambari Web UI                 |
+| TCP             | TCP       | 8440             | 0.0.0.0/0        | Ambari Agent/Server           |
+| TCP             | TCP       | 8441             | 0.0.0.0/0        | Ambari Agent/Server           |
+
+3. Já assumo que fez o procedimento para NSG no passo anterior, caso não, verifique novamente e realize a adição no caminho para encontrar a NSG.
+
+---
+![Acesso aos componentes de segurança](../../assets/images/image11.png)
+---
 
 
