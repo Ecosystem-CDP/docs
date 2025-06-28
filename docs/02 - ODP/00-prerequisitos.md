@@ -196,7 +196,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node3.clemlab.local
 
 A saída deve exibir o FQDN do nó seguido de `OK`, sem solicitar senha.
 
-### 8.4 Ajuste das permissões dos arquivos de chave SSH
+### 9.4 Ajuste das permissões dos arquivos de chave SSH
 
 Após copiar a chave pública do master para cada nó, **em cada nó** (master, node1, node2, node3), execute:
 
