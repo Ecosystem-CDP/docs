@@ -176,6 +176,9 @@ Para o funcionamento correto do cluster Hadoop/Spark com ODP e Ambari, é necess
 
 ---
 ![Acesso aos componentes de segurança](../../assets/images/image11.png)
+![Acesso aos componentes de segurança 2](../../assets/images/image12.png)
+![Acesso aos componentes de segurança 3](../../assets/images/image13.png)
 ---
 
+Com base nas imagens anteriores, crie, exatamente da mesma forma, as regras de **ingress** para as portas 8440 e 8441.
 
