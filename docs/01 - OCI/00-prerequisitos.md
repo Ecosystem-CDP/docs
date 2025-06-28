@@ -57,7 +57,7 @@ Abaixo há sugestões de nomes genéricos para cada recurso que será criado. Vo
 
 ---
 
-## 5. Nomenclatura Sugerida e Etapas de Configuração dos Componentes
+## 3. Resumo e associação de tópicos
 
 A tabela abaixo serve apenas para associar as etapas com componentes e seus respectivos nomes sugeridos.
 
