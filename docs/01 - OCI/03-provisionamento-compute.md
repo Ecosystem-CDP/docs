@@ -104,4 +104,14 @@ Finalizando essa configuração, sua máquina master estará pronta enfim. Agora
 
 ### 2.1 Adição das máquinas à NSG
 
+Agora é necessário, antes de realizar o acesso via openSSH às máquinas, adicioná-las à NSG. Repita o caminho anterior até sua instância, e clique no nome da VM criada. Reproduza os passos das imagens abaixo.
 
+---
+![Caminho para criação de instância 7](../../assets/images/image21.png)
+![Caminho para criação de instância 8](../../assets/images/image22.png)
+![Caminho para criação de instância 9](../../assets/images/image23.png)
+--
+
+Com essas ações concluídas, enfim será possível agora acessar via openSSH as máquinas criadas e dar início aos passos de configuração do ambiente do cluster Hadoop com ODP/Ambari.
+
+Nos próximos documentos dessa parte do projeto coloco mais algumas informações pertinentes de possíveis problemas e questões de boas práticas e conhecimento geral. 
