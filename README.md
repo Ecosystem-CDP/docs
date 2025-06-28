@@ -10,7 +10,7 @@ Foram consideradas boas práticas de governança, segurança e baixo custo descr
 
 1. [Visão Geral](./docs/00%20-%20Visão%20Geral)
 2. [Implementação na OCI](./docs/01%20-%20OCI/00-prerequisitos.md)
-3. [Instalação do ODP](./docs/02%20-%20ODP/00-prerequisitos.md)
+3. [Instalação do ODP](docs/02%20-%20ODP/00-prérequisitos.md)
 4. [Modelos e Anexos](./assets)
 
 ---
@@ -24,7 +24,7 @@ Para garantir a correta implantação do ambiente, siga a ordem sequencial abaix
    - Configuração de rede, segurança, máquinas virtuais e armazenamento.
    - Definição de DNS, firewall, volumes em bloco e demais recursos de infraestrutura.
    - Siga a ordem dos arquivos numerados para garantir que cada pré-requisito seja cumprido antes de avançar.
-3. **Somente após concluir a preparação da infraestrutura na OCI, inicie as etapas de [Instalação do ODP](./docs/02%20-%20ODP/00-prerequisitos.md)**:
+3. **Somente após concluir a preparação da infraestrutura na OCI, inicie as etapas de [Instalação do ODP](docs/02%20-%20ODP/00-prérequisitos.md)**:
    - Instalação e configuração do Ambari, ODP Stack e serviços Hadoop/Spark.
    - Siga rigorosamente o passo a passo para garantir reprodutibilidade.
 4. **Consulte os [Modelos e Anexos](./assets)** para exemplos de arquivos de configuração, scripts e outros materiais de apoio.

@@ -1,11 +1,7 @@
-## Pré-requisitos para OCI
+# 00 • Pré-requisitos para OCI
 
-| Item | Versão mínima |
-|------|---------------|
-| Conta OCI | Free-Tier ou paga |
-| Região | `<REGIAO>` |
-| CLI OCI | 3.x |
-| Terraform | ≥ 1.5 |
+## 1. Criação da conta
 
-Instalar a CLI:
+
+## 2. Setub básico da conta
 

@@ -1,4 +1,4 @@
-# 00 • pré-requisitos
+# 00 • Pré-requisitos
 
 Este documento descreve todos os requisitos mínimos — de infraestrutura, software e acesso — para que a instalação da OpenSource Data Platform (ODP) 1.2.4.0 seja feita em qualquer ambiente Oracle Cloud Infrastructure (OCI) ou bare metal compatível.
 
