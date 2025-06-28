@@ -10,8 +10,8 @@ Abaixo está uma listagem de recapitulação do que é feito na documentação r
 
 | Papel do nó | OCPU mín. | Memória mín. | SO homologado |
 |-------------|-----------|--------------|---------------|
-| master      | 4 OCPU    | 16 GiB       | Ubuntu 22.04 LTS / Oracle Linux 8 |
-| node × 3  | 2 OCPU    |  8 GiB       | Ubuntu 22.04 LTS / Oracle Linux 8 |
+| master      | 1 OCPU    | 6 GiB       | Ubuntu 22.04 LTS / Oracle Linux 8 |
+| node × 3  | 1 OCPU    |  6 GiB       | Ubuntu 22.04 LTS / Oracle Linux 8 |
 
 Obs: Recomendo o uso do Ubuntu pois os próximos passos foram realizados numa máquina Ubuntu.
 
