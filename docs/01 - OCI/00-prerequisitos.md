@@ -32,6 +32,67 @@ A tabela abaixo apresenta, em ordem lógica e sequencial, os principais passos p
 > **Importante:** Execute cada etapa sequencialmente, validando o funcionamento antes de prosseguir. Estarei utilizando valores genéricos nos exemplos (CIDR, nomes, IPs), portanto é necessário que substitua posteriormente por dados do seu cluster.
 ---
 
+## 2.1 Nomenclatura Sugerida para Componentes do Projeto
+
+Abaixo há sugestões de nomes genéricos para cada recurso que será criado. Você pode usar esses nomes caso queira, mas sinta-se livre para criar a nomeclatura que desejar.
+
+| Componente                  | Nome sugerido                  | Observações                        |
+|-----------------------------|-------------------------------|------------------------------------|
+| Compartimento               | `comp-datalake-projeto`       | Compartimento dedicado ao projeto  |
+| VCN (Virtual Cloud Network) | `vcn-datalake`                | Rede principal do cluster          |
+| Sub-rede pública            | `subnet-pub-datalake`         | Para acesso SSH/Ambari Web         |
+| Sub-rede privada (opcional) | `subnet-priv-datalake`        | Para tráfego interno do cluster    |
+| Gateway de Internet         | `igw-datalake`                | Permite acesso externo             |
+| Gateway NAT (opcional)      | `natgw-datalake`              | Acesso internet para sub-rede priv.|
+| Tabela de Rotas             | `rt-datalake`                 | Associada à VCN                    |
+| Security List               | `sl-datalake`                 | Lista de segurança do cluster      |
+| Network Security Group      | `nsg-datalake`                | Grupo de segurança do cluster      |
+| Par de Chaves SSH           | `datalake-key`                | Chave SSH para acesso às VMs       |
+| Volume em Bloco (dados)     | `bv-datalake-node1`           | Um para cada VM de dados           |
+| Instância VM Master         | `vm-datalake-master`          | Nó master do cluster               |
+| Instância VM Node 1         | `vm-datalake-node1`           | Worker node 1                      |
+| Instância VM Node 2         | `vm-datalake-node2`           | Worker node 2                      |
+| Instância VM Node 3         | `vm-datalake-node3`           | Worker node 3                      |
+| Bucket Object Storage       | `bucket-datalake`             | Para ingestão/backup de dados      |
+
+---
+
+## 5. Nomenclatura Sugerida e Etapas de Configuração dos Componentes
+
+A tabela abaixo serve apenas para associar as etapas com componentes e seus respectivos nomes sugeridos.
+
+| Etapa Sequencial | Componente                  | Nome sugerido              | Observações / Quando criar                                      |
+|------------------|----------------------------|----------------------------|-----------------------------------------------------------------|
+| 1                | Compartimento               | `comp-datalake-projeto`    | Primeiro recurso a ser criado, para isolar todos os demais      |
+| 2                | VCN (Virtual Cloud Network) | `vcn-datalake`             | Criar após o compartimento, rede principal do cluster           |
+| 3                | Sub-rede pública            | `subnet-pub-datalake`      | Após a VCN, para SSH/Ambari Web                                 |
+| 4                | Sub-rede privada (opcional) | `subnet-priv-datalake`     | Após a VCN, para tráfego interno (se desejar isolamento)        |
+| 5                | Gateway de Internet         | `igw-datalake`             | Após sub-rede pública, para acesso externo                      |
+| 6                | Gateway NAT (opcional)      | `natgw-datalake`           | Após sub-rede privada, para acesso externo da rede privada      |
+| 7                | Tabela de Rotas             | `rt-datalake`              | Após gateways, associar rotas às sub-redes                      |
+| 8                | Security List               | `sl-datalake`              | Após sub-redes, para definir regras de firewall                 |
+| 9                | Network Security Group      | `nsg-datalake`             | Após sub-redes, para regras de firewall mais flexíveis          |
+| 10               | Par de Chaves SSH           | `datalake-key`             | Antes de criar as VMs, para acesso seguro                       |
+| 11               | Volume em Bloco (dados)     | `bv-datalake-node1`        | Antes ou após as VMs, um volume para cada nó de dados           |
+| 12               | Instância VM Master         | `vm-datalake-master`       | Após toda a infraestrutura de rede e segurança estar pronta     |
+| 13               | Instância VM Node 1         | `vm-datalake-node1`        | Após toda a infraestrutura de rede e segurança estar pronta     |
+| 14               | Instância VM Node 2         | `vm-datalake-node2`        | Após toda a infraestrutura de rede e segurança estar pronta     |
+| 15               | Instância VM Node 3         | `vm-datalake-node3`        | Após toda a infraestrutura de rede e segurança estar pronta     |
+| 16               | Bucket Object Storage       | `bucket-datalake`          | Após a VCN, para ingestão/backup de dados                       |
+
+---
+
+**Dicas de boas práticas:**
+- Use nomes descritivos, sem espaços ou caracteres especiais.
+- Padronize prefixos (ex: `vcn-`, `subnet-`, `vm-`, `nsg-`, `sl-`, `bv-`) para facilitar a identificação do tipo de recurso.
+
+
+
+
+
+
+
+
 
 
 
