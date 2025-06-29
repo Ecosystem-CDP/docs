@@ -2,7 +2,7 @@
 
 ## 1. Objetivo
 
-Documentar, de forma detalhada e reprodutível, todas as etapas para implantação de um ambiente de Data Lake open source baseado em Hadoop, Spark e ferramentas associadas, utilizando recursos da Oracle Cloud Infrastructure (OCI). O foco é permitir que outros estudantes e pesquisadores possam replicar o ambiente, compreender as decisões técnicas e adaptar o projeto para novas demandas acadêmicas ou corporativas.
+Documentar, de forma detalhada e reprodutível, todas as etapas para implantação de um ambiente de Data Lake open source baseado em Hadoop, Spark e ferramentas associadas, utilizando recursos da Oracle Cloud Infrastructure (OCI). O foco é permitir o uso amplo do ambiente, de forma a compreender as decisões técnicas e adaptar o projeto para novas demandas acadêmicas ou corporativas.
 
 ## 2. Justificativa
 
@@ -14,11 +14,11 @@ O crescimento exponencial de dados exige soluções escaláveis e econômicas pa
 - Configuração de ambiente Hadoop/Spark utilizando o ODP Stack (OpenSource Data Platform).
 - Documentação de práticas de segurança, governança e integração com Object Storage.
 - Registro de problemas encontrados e soluções aplicadas.
-- Orientação para reprodutibilidade total do ambiente.
+- Orientação para reprodutibilidade do ambiente.
 
 ## 4. Público-alvo
 
-- Estudantes de graduação e pós-graduação em Computação, Sistemas de Informação, Engenharia de Dados, entre outros.
+- Estudantes de graduação e pós-graduação em Computação, e áreas afins.
 - Pesquisadores e profissionais interessados em Big Data, Data Lake e computação em nuvem.
 - Equipes acadêmicas e científicas que desejam implantar laboratórios de dados escaláveis.
 
