@@ -96,6 +96,8 @@ net.ipv4.ip_local_port_range  = 10240 65535
 net.ipv6.conf.all.disable_ipv6     = 1
 net.ipv6.conf.default.disable_ipv6 = 1
 ```
+Digite EOF ao final, para que entenda "End Of File".
+
 ```bash
 sudo sysctl --system
 ```
