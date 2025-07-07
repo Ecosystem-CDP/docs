@@ -49,10 +49,10 @@ Abaixo há sugestões de nomes genéricos para cada recurso que será criado. Vo
 | Network Security Group      | `nsg-datalake`                | Grupo de segurança do cluster      |
 | Par de Chaves SSH           | `datalake-key`                | Chave SSH para acesso às VMs       |
 | Volume em Bloco (dados)     | `bv-datalake-node1`           | Um para cada VM de dados           |
-| Instância VM Master         | `vm-datalake-master`          | Nó master do cluster               |
-| Instância VM Node 1         | `vm-datalake-node1`           | Worker node 1                      |
-| Instância VM Node 2         | `vm-datalake-node2`           | Worker node 2                      |
-| Instância VM Node 3         | `vm-datalake-node3`           | Worker node 3                      |
+| Instância VM Master         | `master`          | Nó master do cluster               |
+| Instância VM Node 1         | `node1`           | Worker node 1                      |
+| Instância VM Node 2         | `node2`           | Worker node 2                      |
+| Instância VM Node 3         | `node3`           | Worker node 3                      |
 | Bucket Object Storage       | `bucket-datalake`             | Para ingestão/backup de dados      |
 
 ---

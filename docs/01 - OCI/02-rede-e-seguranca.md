@@ -61,34 +61,7 @@ Se já não estiver no painel da VCN:
 ![Configuração da sub-rede pública 2](../../assets/images/image5.png)
 ---
 
-## 3. Criação da sub-rede privada
-A sub-rede privada é utilizada para hospedar instâncias que não precisam de acesso direto à internet, como nós de processamento de dados ou serviços internos do cluster. O tráfego externo dessas instâncias pode ser realizado por meio de um NAT Gateway.
-
-Se já não estiver no painel da VCN:
-
-1. No painel da Oracle Cloud Infrastructure (OCI), acesse:
-   - **Menu** > **Rede** > **Redes virtuais em nuvem (VCN)**
-2. Clique sobre a VCN criada anteriormente (`vcn-datalake`).
-3. No menu lateral da VCN, selecione **Sub-redes**.
-4. Clique em **Criar Sub-rede**.
-
-### Parâmetros recomendados
-
-- **Nome da sub-rede:** `subnet-priv-datalake`
-- **Tipo de sub-rede:** Privada
-- **Bloco CIDR IPv4:** `10.0.2.0/24`
-- **DNS Label:** `privdatalake`
-- **Gateway NAT:** Selecione o NAT Gateway criado para a VCN (`natgw-datalake`)
-- **Tabela de rotas:** Selecione a tabela de rotas associada ao NAT Gateway
-- **Lista de segurança:** Selecione a lista de segurança default do compartimento
-
-> O bloco CIDR `10.0.2.0/24` permite até 254 endereços IP privados, suficiente para hospedar múltiplos nós internos do cluster, mantendo-os isolados de acessos externos diretos.
-
----
-![Configuração da sub-rede privada](../../assets/images/image6.png)
----
-
-## 4. Criação dos Gateways de Internet e NAT
+## 3. Criação dos Gateways de Internet e NAT
 
 Os gateways de Internet e NAT são componentes essenciais para permitir que as instâncias da VCN tenham comunicação externa, seja de forma pública (Internet Gateway) ou privada (NAT Gateway). O Internet Gateway permite acesso direto à internet para sub-redes públicas, enquanto o NAT Gateway permite que instâncias em sub-redes privadas acessem a internet para atualizações e downloads, sem expor seus IPs diretamente.
 
@@ -100,7 +73,7 @@ Se já não estiver no painel da VCN:
 
 ---
 
-### 4.1 Criação do Internet Gateway
+### 3.1 Criação do Internet Gateway
 
 3. No menu lateral da VCN, selecione **Gateways de Internet**.
 4. Clique em **Criar Gateway de Internet**.
@@ -115,7 +88,7 @@ Se já não estiver no painel da VCN:
 
 ---
 
-### 4.2 Criação do NAT Gateway
+### 3.2 Criação do NAT Gateway
 
 5. No menu lateral da VCN, selecione **NAT Gateways**.
 6. Clique em **Criar NAT Gateway**.
@@ -134,7 +107,7 @@ Se já não estiver no painel da VCN:
 ![Configuração de gateway NAT](../../assets/images/image8.png)
 ---
 
-### 4.3 Criação do NSG
+### 3.3 Criação do NSG
 Um **Network Security Group (NSG)** permite definir regras de segurança de rede de forma mais flexível e granular do que as listas de segurança tradicionais. Com um NSG, você pode criar grupos de instâncias ou outros recursos de rede e aplicar regras de entrada e saída para esses grupos, independentemente da sub-rede em que estão. Vamos usar para as regras de acesso com IP privado nas instâncias criadas, fundamental para acesso entre elas.
 
 1. No painel da Oracle Cloud Infrastructure (OCI), acesse:
@@ -149,7 +122,7 @@ Um **Network Security Group (NSG)** permite definir regras de segurança de rede
 
 > Conforme pode ser visto acima, é necessário colocar também as regras para as porta 8080, 8440 e 8441. No exemplo aparece apenas a porta 8080 mas neste mesmo lugar, adicione regras para as portas 8440 e 8441.
 
-## 5. Configuração de Portas Obrigatórias para ODP, Ambari e Hadoop
+## 4. Configuração de Portas Obrigatórias para ODP, Ambari e Hadoop
 
 Para o funcionamento correto do cluster Hadoop/Spark com ODP e Ambari, é necessário liberar o tráfego das seguintes portas nas **Listas de Segurança (Security List)** e, nos **Network Security Groups (NSG)** associados à VCN e às sub-redes do projeto:
 
@@ -181,4 +154,10 @@ Para o funcionamento correto do cluster Hadoop/Spark com ODP e Ambari, é necess
 ---
 
 Com base nas imagens anteriores, crie, exatamente da mesma forma, as regras de **ingress** para as portas 8440 e 8441.
+
+## 5. Verificação de acesso da tabela de roteamento
+
+Verifique ainda se na tabela de roteamento associada à VCN e à sua subnet, normalmente a default, está com essa regra abaixo. Caso não esteja, é importante que o faça, pois se não estiver, não será possível acessar a internet com nenhuma das máquinas, como também, nem acessá-las via OpenSSH.
+
+![Verificação da tabela de roteamento](../../assets/images/image24.png)
 
