@@ -165,50 +165,7 @@ sudo hostnamectl set-hostname node3.clemlab.local
 ```
 Após isso, por garantia, reinicialize as máquinas, para que as definições de hostname certamente estejam em vigor.
 
-## 9. Acesso SSH sem Senha (Password-less SSH)
-
-Para que o Ambari Server possa instalar automaticamente os agentes e orquestrar comandos em todos os nós, é imprescindível habilitar acesso SSH sem senha a partir do nó **master** para cada **node**.
-
-Detalho ainda que caso o procedimento abaixo não funcione adequadamente, recomendo que vá em [Problemas conhecidos](./XX-problemas-conhecidos.md), e verifique a configuração de SSH alternativa, mas com ações manuais em cada nó.
-
-> No laboratório utilizamos o usuário padrão `ubuntu`, já pertencente ao grupo *sudo*.
-> Caso utilize outro usuário, certifique-se de conceder sudo *NOPASSWD* em `/etc/sudoers`.
-
-### 9.1 Verificar se o OpenSSH está instalado
-```bash
-sudo apt install -y openssh-server openssh-client
-```
-
-### 9.2 Gerar o par de chaves no nó *master*
-```bash
-ssh-keygen -b 4096 -t rsa -C "odp-cluster" -N "" -f ~/.ssh/id_rsa
-```
-* Aceite o caminho padrão `~/.ssh/id_rsa`.
-* A opção `-N ""` cria a chave sem passphrase, requisito para automação.
-
-### 9.3 Copiar a chave pública manualmente para cada nó
-
-No **nó master**, execute um comando para cada nó, conforme o nome definido (também para a própria master):
-```bash
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@master.clemlab.local
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node1.clemlab.local
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node2.clemlab.local
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node3.clemlab.local
-```
-
-A saída deve exibir o FQDN do nó seguido de `OK`, sem solicitar senha.
-
-### 9.4 Ajuste das permissões dos arquivos de chave SSH
-
-Após copiar a chave pública do master para cada nó, **em cada nó** (master, node1, node2, node3), execute:
-
-```bash
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/authorized_keys
-```
----
-
-## 10. Configuração de DNS Interno (/etc/hosts)
+## 9. Configuração de DNS Interno (/etc/hosts)
 
 Garanta que todos os nós resolvam corretamente os nomes internos do cluster.
 Edite o arquivo `/etc/hosts` em **todos os nós** e adicione (ajuste os IPs conforme sua rede):
@@ -228,6 +185,50 @@ ping node1
 ping node2
 ping node3
 ```
+
+## 10. Acesso SSH sem Senha (Password-less SSH)
+
+Para que o Ambari Server possa instalar automaticamente os agentes e orquestrar comandos em todos os nós, é imprescindível habilitar acesso SSH sem senha a partir do nó **master** para cada **node**.
+
+Detalho ainda que caso o procedimento abaixo não funcione adequadamente, recomendo que vá em [Problemas conhecidos](./XX-problemas-conhecidos.md), e verifique a configuração de SSH alternativa, mas com ações manuais em cada nó.
+
+> No laboratório utilizamos o usuário padrão `ubuntu`, já pertencente ao grupo *sudo*.
+> Caso utilize outro usuário, certifique-se de conceder sudo *NOPASSWD* em `/etc/sudoers`.
+
+### 10.1 Verificar se o OpenSSH está instalado
+```bash
+sudo apt install -y openssh-server openssh-client
+```
+
+### 10.2 Gerar o par de chaves no nó *master*
+```bash
+ssh-keygen -b 4096 -t rsa -C "odp-cluster" -N "" -f ~/.ssh/id_rsa
+```
+* Aceite o caminho padrão `~/.ssh/id_rsa`.
+* A opção `-N ""` cria a chave sem passphrase, requisito para automação.
+
+### 10.3 Copiar a chave pública manualmente para cada nó
+
+No **nó master**, execute um comando para cada nó, conforme o nome definido (também para a própria master):
+```bash
+ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@master.clemlab.local
+ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node1.clemlab.local
+ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node2.clemlab.local
+ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node3.clemlab.local
+```
+
+A saída deve exibir o FQDN do nó seguido de `OK`, sem solicitar senha.
+
+### 10.4 Ajuste das permissões dos arquivos de chave SSH
+
+Após copiar a chave pública do master para cada nó, **em cada nó** (master, node1, node2, node3), execute:
+
+```bash
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
+---
+
 ## 11. Configuração do iptables (Firewall)
 
 Para que o Ambari possa se comunicar corretamente durante a configuração e operação do cluster, é fundamental garantir que as portas necessárias estejam abertas em todas as máquinas (master, node1, node2, node3).
