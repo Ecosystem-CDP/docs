@@ -125,7 +125,7 @@ echo "session required pam_limits.so" | sudo tee -a /etc/pam.d/common-session
 ```bash
 sudo apt update
 sudo apt install -y chrony
-sudo systemctl enable --now chronyd
+sudo systemctl enable --now chrony
 sudo systemctl status chronyd
 chronyc sources -v # verificação
 ```
