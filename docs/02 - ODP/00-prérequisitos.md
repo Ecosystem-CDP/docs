@@ -209,23 +209,21 @@ ssh-keygen -b 4096 -t rsa -C "odp-cluster" -N "" -f ~/.ssh/id_rsa
 
 ### 10.3 Copiar a chave pública manualmente para cada nó
 
-No **nó master**, execute um comando para cada nó, conforme o nome definido (também para a própria master):
+Copie o conteúdo da saída (linha única que começa com `ssh-rsa`).
+Na sua máquina Master, pegue sua chave pública com o seguinte comando:
+
 ```bash
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@master.clemlab.local
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node1.clemlab.local
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node2.clemlab.local
-ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@node3.clemlab.local
+cat ~/.ssh/id_rsa.pub
 ```
-
-A saída deve exibir o FQDN do nó seguido de `OK`, sem solicitar senha.
-
 ### 10.4 Ajuste das permissões dos arquivos de chave SSH
 
 Após copiar a chave pública do master para cada nó, **em cada nó** (master, node1, node2, node3), execute:
 
 ```bash
+echo "<your-public-key>" >> ~/.ssh/authorized_keys
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
+chown ubuntu:ubuntu ~/.ssh ~/.ssh/authorized_keys
 ```
 ---
 
