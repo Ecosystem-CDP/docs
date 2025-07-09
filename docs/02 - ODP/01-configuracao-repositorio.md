@@ -5,6 +5,7 @@ Este documento detalha o processo de configuração dos repositórios oficiais d
 > **Atenção:** Os repositórios da Clemlab exigem autenticação prévia no portal para que os caminhos dos pacotes estejam acessíveis. Sempre valide seu login antes de iniciar o procedimento.
 
 ---
+Se receber **403 Forbidden**, muito possivelmente é devido ao prazo curto de autenticação existente no sistema da Clemlab, onde você deve criar uma conta e executar os passos abaixo imediatamente após realizar o login. Caso em algum momento receba um retorno na faixa 400, como *forbidden*, faça o login novamente e tente realizar mais uma vez o comando. É normal que seja necessário fazer várias vezes, o tempo de validade da autenticação é muito curto.
 
 ## 1. Importar a chave GPG
 
@@ -21,7 +22,7 @@ wget -O - https://archive.clemlab.com/RPM-GPG-KEY-Jenkins | gpg --dearmor | sudo
 Execute em **todos os nós**:
 
 ```bash
-wget -O /etc/apt/sources.list.d/ambari.list https://archive.clemlab.com/ubuntu22-python3/ambari-release/2.7.11.0.0-161/ambari.list
+sudo wget -O /etc/apt/sources.list.d/ambari.list https://archive.clemlab.com/ubuntu22-python3/ambari-release/2.7.11.0.0-161/ambari.list
 ```
 ---
 
@@ -30,7 +31,7 @@ wget -O /etc/apt/sources.list.d/ambari.list https://archive.clemlab.com/ubuntu22
 Execute em **todos os nós**:
 
 ```bash
-wget -O /etc/apt/sources.list.d/odp.list https://archive.clemlab.com/ubuntu22/odp-release/1.2.4.0-108/ambari.list
+sudo wget -O /etc/apt/sources.list.d/odp.list https://archive.clemlab.com/ubuntu22/odp-release/1.2.4.0-108/ambari.list
 ```
 ---
 
@@ -41,13 +42,13 @@ Execute em **todos os nós**:
 ```bash
 sudo apt update
 ```
-Se receber **403 Forbidden**, consulte `02-odp/99-problemas-conhecidos.md` para soluções alternativas (uso de `repos.tar.gz`, proxy corporativo, etc).
+
 ---
 
 ## 5. Instalar o Ambari Agent (em todos os nós)
 
 ```bash
-sudo apt install ambari-agent
+sudo apt install -y ambari-agent
 ```
 ---
 
@@ -56,5 +57,5 @@ sudo apt install ambari-agent
 No **nó master**:
 
 ```bash
-sudo apt install ambari-server
+sudo apt install -y ambari-server
 ```
