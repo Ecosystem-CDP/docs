@@ -38,11 +38,22 @@ No **nó master**:
 sudo ambari-server setup
 ```
 
-Durante o processo interativo, você poderá:
+Durante o processo interativo, recomenda-se aceitar as opções padrão para ambientes de laboratório ou implantação padrão. O instalador irá:
 
-- Definir o caminho do JAVA_HOME (ex: `/usr/lib/jvm/java-8-openjdk-amd64`)
-- Escolher o banco de dados para o Ambari (por padrão, PostgreSQL integrado)
-- Aceitar ou personalizar outros parâmetros avançados
+- Verificar o ambiente (Python, SELinux, firewall).
+- Perguntar se deseja customizar o usuário do daemon Ambari Server (pressione Enter para manter o padrão).
+- Solicitar a escolha do JDK:
+  - Selecione a opção `[1] Oracle JDK 1.8 + Java Cryptography Extension (JCE) Policy Files 8` (pressione Enter).
+  - Aceite os termos de licença do Oracle JDK quando solicitado.
+  - O instalador fará o download e a instalação automática do JDK e dos arquivos de política JCE.
+- Perguntar se deseja habilitar o download de pacotes GPL (LZO). Para a maioria dos ambientes, pode responder `n` (não).
+- Configurar o banco de dados do Ambari:
+  - Aceite a configuração padrão (PostgreSQL integrado) pressionando Enter quando solicitado sobre configuração avançada.
+  - O instalador criará e inicializará o banco de dados automaticamente.
+
+Ao final, será exibida a mensagem:
+
+
 
 > **Dica:**
 > Para automatizar o processo ou definir opções específicas, utilize os parâmetros:
