@@ -128,7 +128,7 @@ Esses componentes formam o núcleo de um Data Lake moderno, suportando cargas ba
 
 ---
 
-### Referência completa dos componentes
+### Referência de componentes
 
 Para entender o papel de cada componente, suas funcionalidades e os cenários indicados para uso, acesse o arquivo complementar abaixo, onde está disponível uma tabela detalhada de todos os serviços suportados pela distribuição ODP:
 
@@ -141,7 +141,83 @@ Neste documento complementar, você encontrará:
 - Situações principais para aplicação
 - Dependências e recomendações de uso em diferentes perfis de cluster
 
+## Distribuição dos Papéis de Master – Assign Masters
 
+Durante o assistente de configuração do Ambari, após a seleção dos componentes, você será direcionado à tela **Assign Masters**, responsável por atribuir os papéis de "master" de cada serviço do cluster aos diferentes nós.
 
+### O que deve ser feito nesta etapa
+
+- Atribua cada função de master seguindo o modelo apresentado na interface, replicando a seleção da imagem de referência.
+- Esta distribuição garante o balanceamento das cargas e a alta disponibilidade dos principais serviços.
+
+---
+
+### Distribuição recomendada dos Masters
+
+| Função                          | Nó designado                   |
+|---------------------------------|-------------------------------|
+| NameNode                        | node1.clemlab.local           |
+| Secondary NameNode              | master.clemlab.local          |
+| Timeline Service V1.5           | node1.clemlab.local           |
+| YARN Registry DNS               | node1.clemlab.local           |
+| Timeline Service V2.0 Reader    | master.clemlab.local          |
+| ResourceManager                 | master.clemlab.local          |
+| History Server                  | master.clemlab.local          |
+| Hive Metastore                  | master.clemlab.local          |
+| HiveServer2                     | master.clemlab.local          |
+| ZooKeeper Server (1)            | node2.clemlab.local           |
+| ZooKeeper Server (2)            | node1.clemlab.local           |
+| ZooKeeper Server (3)            | master.clemlab.local          |
+| Metrics Collector               | master.clemlab.local          |
+| Grafana                         | master.clemlab.local          |
+| Atlas Metadata Server           | master.clemlab.local          |
+| Kafka Broker (1)                | node2.clemlab.local           |
+| Kafka Broker (2)                | node1.clemlab.local           |
+| Kafka Broker (3)                | node3.clemlab.local           |
+| Spark3 History Server           | master.clemlab.local          |
+
+> **Atenção:**
+> Não altere esta configuração recomendada — ela foi desenhada para garantir distribuição de carga, robustez na operação e boa prática em ambientes de clusters Hadoop/Spark.
+
+Deve ficar exatamente conforme esse imagem:
+
+---
+![Divisão de Masters](../../assets/images/image35.png)
+---
+
+### Como selecionar
+
+1. **Para cada serviço listado**, utilize o menu suspenso da coluna correspondente na interface para escolher o mesmo nó que aparece como selecionado na imagem.
+2. **Não pule nenhum serviço.** Confirme que todos estão atribuídos aos mesmos nós indicados.
+3. Após finalizar todas as seleções, avance para a próxima etapa do assistente.
+
+## Etapa: Atribuição de Slaves e Clientes – Assign Slaves and Clients
+
+Na sequência do assistente de configuração do Ambari, após definir os masters, chega-se à etapa **Assign Slaves and Clients**. Aqui você irá especificar quais nós do cluster irão executar os papéis de slave (DataNode, NodeManager, etc.) e quais receberão componentes cliente.
+
+### O que fazer nesta etapa
+
+Realize a marcação exatamente como apresentado na tela de referência do assistente (todas as opções “DataNode”, “NodeManager”, “Spark3 Livy Server”, “Spark3 Thrift Server”, “Client” selecionadas para todos os nodes, exceto os gateways apenas quando necessário).
+
+---
+![Seleção de Componentes](../../assets/images/image36.png)
+---
+## Customização de Serviços
+
+### Passo 1 – Preenchimento dos Dados de Credentials
+
+Nesta primeira etapa ("Credentials") da configuração no assistente do Ambari/ODP, será solicitado que você insira o nome de usuário e as senhas para os serviços essenciais do cluster, como Grafana Admin, Atlas Admin e Hive Database.
+
+- **O que fazer:**
+  - Defina senhas para cada serviço nas caixas indicadas.
+  - Você pode padronizar as senhas, utilizando uma mesma senha forte para todos os campos, facilitando a administração inicial do ambiente.
+  - Lembre-se de anotar as credenciais em local seguro para uso futuro nas interfaces administrativas dos serviços.
+  - Confirme cada senha digitando novamente no campo de confirmação correspondente.
+
+---
+![Atribuição de senhas](../../assets/images/image37.png)
+---
+
+Após preencher todos os campos, clique em **Next** para avançar à próxima etapa da configuração.
 
 
