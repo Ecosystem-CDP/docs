@@ -175,6 +175,8 @@ Durante o assistente de configuração do Ambari, após a seleção dos componen
 | Kafka Broker (2)                | node1.clemlab.local           |
 | Kafka Broker (3)                | node3.clemlab.local           |
 | Spark3 History Server           | master.clemlab.local          |
+| Infra Solr Instance           | master.clemlab.local          |
+| HBase Master          | master.clemlab.local          |
 
 > **Atenção:**
 > Não altere esta configuração recomendada — ela foi desenhada para garantir distribuição de carga, robustez na operação e boa prática em ambientes de clusters Hadoop/Spark.
@@ -200,7 +202,7 @@ Na sequência do assistente de configuração do Ambari, após definir os master
 Realize a marcação exatamente como apresentado na tela de referência do assistente (todas as opções “DataNode”, “NodeManager”, “Spark3 Livy Server”, “Spark3 Thrift Server”, “Client” selecionadas para todos os nodes, exceto os gateways apenas quando necessário).
 
 ---
-![Seleção de Componentes](../../assets/images/image36.png)
+![Seleção de Componentes](../../assets/images/image45.png)
 ---
 ## Customização de Serviços
 
@@ -218,6 +220,45 @@ Nesta primeira etapa ("Credentials") da configuração no assistente do Ambari/O
 ![Atribuição de senhas](../../assets/images/image37.png)
 ---
 
-Após preencher todos os campos, clique em **Next** para avançar à próxima etapa da configuração.
+Após preencher todos os campos, clique em **Next** para avançar à próxima etapa da configuração. Neste caso, passaremos mais tempo na etapa de *All Configurations*. Neste sentido, existem algumas configurações prévias que devem ser executadas na máquina **Master** do seu cluster, portanto, além de ir até a etapa de *All Configurations*, também realize o acesso via SSH à instância de sua máquina Master para o procedimento abaixo:
 
+Em sua máquina master, para configurações adicionais prévias quanto ao Apache Atlas, insira os seguintes comandos abaixo:
+
+```bash
+sudo mkdir -p /etc/atlas/conf/
+```
+
+No campo *MinhaSenhaForte123* abaixo, lembre-se de trocar por uma senha padrão, que você se lembre. Caso prefira essa também pode manter, mas lembre-se dela.
+
+```bash
+sudo keytool -genkey -alias atlasserver -keyalg RSA -sigalg SHA256withRSA \
+  -keystore /etc/atlas/conf/atlas.keystore -storepass MinhaSenhaForte123 -validity 3650 \
+  -dname "CN=master.clemlab.local, OU=YourUnit, O=YourOrg, L=YourCity, S=YourState, C=BR"
+```
+
+Nas próximas etapas abaixo, conforme as imagens realize as alterações necessárias para o correto funcionamento do HDFS e do Atlas. Primeiro aumente o tamanho numérico do espaço reservado ao HDFS (conforme *tip* do próprio sistema, x10 o valor atual).
+
+---
+![Atribuição de senhas](../../assets/images/image48.png)
+---
+
+Agora vá nas configurações do Atlas e em Avançado (*Advanced*), role até a parte debaixo da tela e deixe os caminhos exatemente conforme a imagem. Na imagem há a palavra *changeit*, essa é sua senha, insira dessa maneira. A outra senha que não aparece é exatamente a mesma senha que usou no passo anterior, então se tiver deixado como especificamos antes, deve ser algo como *MinhaSenhaForte123*.
+
+---
+![Atribuição de senhas](../../assets/images/image47.png)
+---
+
+---
+![Atribuição de senhas](../../assets/images/image46.png)
+---
+
+Enfim, realize a revisão dos processos, inclusive recomendo que baixe o arquivo blueprint (JSON) de tudo que você fez e realize o deploy através do botão.
+
+---
+![Atribuição de senhas](../../assets/images/image49.png)
+---
+
+---
+![Atribuição de senhas](../../assets/images/image50.png)
+---
 
