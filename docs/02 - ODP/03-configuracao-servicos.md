@@ -258,7 +258,27 @@ Enfim, realize a revisão dos processos, inclusive recomendo que baixe o arquivo
 ![Atribuição de senhas](../../assets/images/image49.png)
 ---
 
+É comum que nessa etapa de instalação dos componentes hajam problemas de instalação, portanto, existem alguns procedimentos recomendados de instalação para serem executados com o objetivo de tornar mais simples o processo. Isso exigirá que acesse via SSH sua máquina master e as demais máquinas nós.
+
+Uma dica, como já realizou a configuração via SSH entre as próprias máquinas, é interessante então que apenas use os comandos de SSH dentro da própria master para acessar as demais máquina, como no exemplo abaixo:
+
+```bash
+ssh master.clemlab.local
+ssh node1.clemlab.local
+ssh node2.clemlab.local
+ssh node3.clemlab.local
+```
+
+Entre no arquivo abaixo e execute em cada nó cada um dos comandos sugeridos, pois estes irão instalar manualmente alguns dos componentes que apresentaram problemas nessa prática e também configurar partes importantes ao banco de dados e evitar que hajam tarefas em espera que devam ser configuradas.
+
+- [`docs/02-ODP/03.2-configuracao-servicos-maquinas.md`](./03.2-configuracao-servicos-maquinas.md)
+
+É muito comum que os erros vistos acima acontecem, como também outros que talvez possam não eestar aí, caso ocorra, abra um issue no GitHub para que acrescente à base de conhecimento.
+
 ---
 ![Atribuição de senhas](../../assets/images/image50.png)
 ---
 
+Ao final deste processo, possivelmente o cluster estará com os componentes instalados, porém ainda sem serem inicializados devido à problemas que vamos corrijir na próxima etapa.
+
+![Forma final da etapa](../../assets/images/image51.png)
