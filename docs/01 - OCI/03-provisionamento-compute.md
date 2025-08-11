@@ -74,13 +74,13 @@ Instâncias podem ser configuradas com diferentes recursos de armazenamento, con
 ![Caminho para criação de instância](../../assets/images/image14.png)
 ---
 
-Neste menu, dê o nome de **master** para a instância e mude a imagem para a do **Ubuntu 22.04**
+Neste menu, dê o nome de **master** para a instância e mude a imagem para a do **Oracle Linux 9**
 
 ---
-![Caminho para criação de instância 2](../../assets/images/image15.png)
+![Caminho para criação de instância 2](../../assets/images/image52.png)
 ---
 
-Selecione conforme a imagem as informações de shape, com a qtda de OCPU e memória adequados. Recomendo que inicialmente use o shape **VM.Standard.A1.Flex (1 OCPU, 6 GB)** que estará em **Ampere**. Use o máximo possível deste formato até que não seja mais possível, e apenas depois crie máquinas com a outra forma.
+Selecione conforme a imagem as informações de shape, com a qtda de OCPU e memória adequados. Recomendo que inicialmente use o shape **VM.Standard.A1.Flex (1 OCPU, 6 GB)** que estará em **Ampere**. 
 
 ---
 ![Caminho para criação de instância 4](../../assets/images/image17.png)
