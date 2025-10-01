@@ -1,61 +1,155 @@
-# 01 • Configuração do Repositório ODP e Instalação do Ambari/ODP
+# 01 -  Configuração do Repositório ODP e Instalação do Ambari/ODP
 
-Este documento detalha o processo de configuração dos repositórios oficiais da Clemlab e a instalação dos componentes Ambari Server, Ambari Agent e ODP Stack em ambiente Ubuntu 22.04.
+Este documento detalha como configurar os repositórios oficiais da Clemlab para **Oracle Linux 9 ARM64** e instalar os componentes Ambari Server, Ambari Agent e ODP Stack.
 
-> **Atenção:** Os repositórios da Clemlab exigem autenticação prévia no portal para que os caminhos dos pacotes estejam acessíveis. Sempre valide seu login antes de iniciar o procedimento.
+> **Importante:** As URLs dos repositórios usam autenticação temporária; em caso de erro **403 Forbidden**, refaça o login no portal Clemlab e tente novamente.
 
----
-Se receber **403 Forbidden**, muito possivelmente é devido ao prazo curto de autenticação existente no sistema da Clemlab, onde você deve criar uma conta e executar os passos abaixo imediatamente após realizar o login. Caso em algum momento receba um retorno na faixa 400, como *forbidden*, faça o login novamente e tente realizar mais uma vez o comando. É normal que seja necessário fazer várias vezes, o tempo de validade da autenticação é muito curto.
+***
 
 ## 1. Importar a chave GPG
 
-Execute em **todos os nós**:
+Em **todos** os nós, execute:
 
 ```bash
-wget -O - https://archive.clemlab.com/RPM-GPG-KEY-Jenkins | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/odp.gpg > /dev/null
+sudo curl -fsSL \
+  https://clemlabs.s3.eu-west-3.amazonaws.com/RPM-GPG-KEY-SHA256-Jenkins \
+  | gpg --dearmor \
+  | sudo tee /etc/pki/rpm-gpg/RPM-GPG-KEY-clemlab > /dev/null
 ```
 
----
+***
 
-## 2. Adicionar o repositório do Ambari (Python 3)
+## 2. Criar os arquivos de repositório
 
-Execute em **todos os nós**:
+Em **todos** os nós, crie os seguintes arquivos em `/etc/yum.repos.d/`:
+
+### 2.1 ODP Stack
+
+`/etc/yum.repos.d/odp-release.repo`
+
+```ini
+[ODP-1.2.2.0-128]
+name=ODP-1.2.2.0-128-aarch64
+baseurl=https://clemlabs.s3.eu-west-3.amazonaws.com/centos9-aarch64/odp-release/1.2.2.0-128/rpms/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-clemlab
+```
+
+### 2.2 Utilitários ODP
+
+`/etc/yum.repos.d/odp-utils.repo`
+
+```ini
+[ODP-UTILS-1.2.2.0]
+name=ODP-UTILS-1.2.2.0-aarch64
+baseurl=https://clemlabs.s3.eu-west-3.amazonaws.com/centos9-aarch64/odp-utils/1.2.2.0/rpms/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-clemlab
+```
+
+### 2.3 Ambari
+
+`/etc/yum.repos.d/ambari-release.repo`
+
+```ini
+[ambari-2.7.9.0-61]
+name=ambari-2.7.9.0-61
+baseurl=https://clemlabs.s3.eu-west-3.amazonaws.com/centos9-aarch64/ambari-release/2.7.9.0.0-61/rpms/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-clemlab
+```
+
+***
+
+## 3. Atualizar o cache do DNF
 
 ```bash
-sudo wget -O /etc/apt/sources.list.d/ambari.list https://archive.clemlab.com/ubuntu22-python3/ambari-release/2.7.11.0.0-161/ambari.list
+sudo dnf clean all
+sudo dnf makecache
 ```
----
 
-## 3. Adicionar o repositório do ODP Stack
+***
 
-Execute em **todos os nós**:
+## 4. Instalar o Ambari Agent (todos os nós)
 
 ```bash
-sudo wget -O /etc/apt/sources.list.d/odp.list https://archive.clemlab.com/ubuntu22/odp-release/1.2.4.0-108/ambari.list
+sudo dnf install -y ambari-agent
 ```
----
 
-## 4. Atualizar o cache do APT
-
-Execute em **todos os nós**:
+Verifique:
 
 ```bash
-sudo apt update
+rpm -q ambari-agent
 ```
 
----
+***
 
-## 5. Instalar o Ambari Agent (em todos os nós)
+## 5. Instalar o Ambari Server (apenas no master)
+
+No **master-cdp**, execute:
 
 ```bash
-sudo apt install -y ambari-agent
+sudo dnf install -y ambari-server
 ```
----
 
-## 6. Instalar o Ambari Server (**apenas no nó master**)
-
-No **nó master**:
+Verifique:
 
 ```bash
-sudo apt install -y ambari-server
+rpm -q ambari-server
 ```
+
+***
+
+## 6. Instalar o ODP Stack (todos os nós)
+
+```bash
+sudo dnf install -y \
+  odp-core \
+  odp-hadoop \
+  odp-hive \
+  odp-spark
+```
+
+> Ajuste os pacotes conforme componentes desejados.
+
+***
+
+## 7. Pós-instalação do Ambari Server (master)
+
+No **master-cdp**, finalize:
+
+```bash
+sudo ambari-server setup -s
+sudo systemctl enable --now ambari-server
+```
+
+Verifique status:
+
+```bash
+sudo systemctl status ambari-server
+```
+
+***
+
+## 8. Configurar e iniciar o Ambari Agent
+
+Em **todos** os nós (incluindo o master):
+
+1. Ajuste `/etc/ambari-agent/conf/ambari-agent.ini`, definindo:
+   ```
+   [server]
+   hostname=master.cdp.dev.br
+   url_port=8440
+   ```
+2. Habilite e inicie:
+   ```bash
+   sudo systemctl enable --now ambari-agent
+   sudo systemctl status ambari-agent
+   ```
+
+***
+
+Após estes passos, abra o Ambari Web em `http://master.cdp.dev.br:8080` e prossiga com o wizard de provisionamento do cluster.

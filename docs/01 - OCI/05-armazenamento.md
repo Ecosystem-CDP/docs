@@ -30,7 +30,5 @@ O HDFS é o principal sistema de arquivos para dados estruturados e não estrutu
 
 > Ajuste o tamanho do disco conforme a previsão de crescimento do volume de dados.
 
----
-# Em construção...
 
 
