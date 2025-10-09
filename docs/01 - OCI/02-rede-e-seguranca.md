@@ -122,6 +122,8 @@ Um **Network Security Group (NSG)** permite definir regras de segurança de rede
 
 > Conforme pode ser visto acima, é necessário colocar também as regras para as porta 8080, 8440 e 8441. No exemplo aparece apenas a porta 8080 mas neste mesmo lugar, adicione regras para as portas 8440 e 8441.
 
+Lembre-se também de conectar a tabela de roteamento da sua subrede ao seu internet gateway, pois assim as máquinas poderão realizar acesso à internet.
+
 ## 4. Configuração de Portas Obrigatórias para ODP, Ambari e Hadoop
 
 Para o funcionamento correto do cluster Hadoop/Spark com ODP e Ambari, é necessário liberar o tráfego das seguintes portas nas **Listas de Segurança (Security List)** e, nos **Network Security Groups (NSG)** associados à VCN e às sub-redes do projeto:
