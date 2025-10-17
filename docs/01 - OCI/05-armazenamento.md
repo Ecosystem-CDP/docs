@@ -16,19 +16,7 @@ O HDFS é o principal sistema de arquivos para dados estruturados e não estrutu
 
 ---
 
-## 2. Dimensionamento e planejamento
 
-**Recomendações mínimas por nó:**
-
-| Papel do nó | Disco do SO | Disco de dados (HDFS) | Shape sugerido            |
-|-------------|-------------|----------------------|---------------------------|
-| master      | 50 GB       | 100–500 GB           | VM.Standard.A1.Flex      |
-| node1-3     | 50 GB       | 100–500 GB           | VM.Standard.A1.Flex      |
-
-- Disco do SO: Ubuntu 22.04 ou Oracle Linux 8 (volume de boot)
-- Disco de dados: Volume em bloco dedicado para HDFS, montado em `/data/1/dfs/dn` (DataNode) ou `/data/1/dfs/nn` (NameNode)
-
-> Ajuste o tamanho do disco conforme a previsão de crescimento do volume de dados.
 
 
 

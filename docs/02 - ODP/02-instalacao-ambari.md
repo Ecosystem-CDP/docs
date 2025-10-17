@@ -88,7 +88,7 @@ O status deve ser **active (running)**.
 Após alguns segundos, acesse:
 
 ```
-http://master.cdp.dev.br:8080
+http://<IP_PUBLICO_MASTER>:8080
 ```
 
 - **Usuário:** admin

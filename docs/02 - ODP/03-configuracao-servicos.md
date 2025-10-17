@@ -152,31 +152,31 @@ Durante o assistente de configuração do Ambari, após a seleção dos componen
 
 ---
 
-### Distribuição recomendada dos Masters
+### Distribuição recomendada dos componentes
 
-| Função                          | Nó designado                   |
-|---------------------------------|-------------------------------|
-| NameNode                        | node1.clemlab.local           |
-| Secondary NameNode              | master.clemlab.local          |
-| Timeline Service V1.5           | node1.clemlab.local           |
-| YARN Registry DNS               | node1.clemlab.local           |
-| Timeline Service V2.0 Reader    | master.clemlab.local          |
-| ResourceManager                 | master.clemlab.local          |
-| History Server                  | master.clemlab.local          |
-| Hive Metastore                  | master.clemlab.local          |
-| HiveServer2                     | master.clemlab.local          |
-| ZooKeeper Server (1)            | node2.clemlab.local           |
-| ZooKeeper Server (2)            | node1.clemlab.local           |
-| ZooKeeper Server (3)            | master.clemlab.local          |
-| Metrics Collector               | master.clemlab.local          |
-| Grafana                         | master.clemlab.local          |
-| Atlas Metadata Server           | master.clemlab.local          |
-| Kafka Broker (1)                | node2.clemlab.local           |
-| Kafka Broker (2)                | node1.clemlab.local           |
-| Kafka Broker (3)                | node3.clemlab.local           |
-| Spark3 History Server           | master.clemlab.local          |
-| Infra Solr Instance           | master.clemlab.local          |
-| HBase Master          | master.clemlab.local          |
+| Função                       | Nó designado         |
+|------------------------------|----------------------|
+| NameNode                     | node1.clemlab.local  |
+| Secondary NameNode           | master.clemlab.local |
+| Timeline Service V1.5        | node1.clemlab.local  |
+| YARN Registry DNS            | node1.clemlab.local  |
+| Timeline Service V2.0 Reader | master.clemlab.local |
+| ResourceManager              | master.clemlab.local |
+| History Server               | master.clemlab.local |
+| Hive Metastore               | master.clemlab.local |
+| HiveServer2                  | master.clemlab.local |
+| ZooKeeper Server (1)         | node2.clemlab.local  |
+| ZooKeeper Server (2)         | node1.clemlab.local  |
+| ZooKeeper Server (3)         | master.clemlab.local |
+| Metrics Collector            | master.clemlab.local |
+| Grafana                      | master.clemlab.local |
+| Atlas Metadata Server        | master.clemlab.local |
+| Kafka Broker (1)             | node2.clemlab.local  |
+| Kafka Broker (2)             | node1.clemlab.local  |
+| Kafka Broker (3)             | node3.clemlab.local  |
+| Spark3 History Server        | master.clemlab.local |
+| Infra Solr Instance          | master.clemlab.local |
+| HBase Master                 | master.clemlab.local |
 
 > **Atenção:**
 > Não altere esta configuração recomendada — ela foi desenhada para garantir distribuição de carga, robustez na operação e boa prática em ambientes de clusters Hadoop/Spark.

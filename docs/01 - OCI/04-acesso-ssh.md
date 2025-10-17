@@ -17,7 +17,7 @@ ssh -i <caminho_para_sua_chave_privada> ubuntu@<ip_publico_da_maquina>
 
 
 - `-i <caminho_para_sua_chave_privada>`: caminho completo para o arquivo da chave privada (ex: `~/.ssh/id_rsa`)
-- `ubuntu`: usuário padrão das instâncias Ubuntu criadas na OCI
+- `opc`: usuário padrão das instâncias Oracle Linux 9 criadas na OCI
 - `<ip_publico_da_maquina>`: endereço IP público da VM, obtido no painel da OCI
 
 ### 3. Exemplo prático para 4 máquinas
@@ -35,18 +35,18 @@ No terminal do seu computador local, acesse cada máquina com:
 
 Acesse o master
 ```bash
-ssh -i ~/.ssh/id_rsa ubuntu@152.67.10.101
+ssh -i ~/.ssh/id_rsa opc@152.67.10.101
 ```
 Acesse o node1
 ```bash
-ssh -i ~/.ssh/id_rsa ubuntu@152.67.10.102
+ssh -i ~/.ssh/id_rsa opc@152.67.10.102
 ```
 Acesse o node2
 ```bash
-ssh -i ~/.ssh/id_rsa ubuntu@152.67.10.103
+ssh -i ~/.ssh/id_rsa opc@152.67.10.103
 ```
 
 Acesse o node3
 ```bash
-ssh -i ~/.ssh/id_rsa ubuntu@152.67.10.104
+ssh -i ~/.ssh/id_rsa opc@152.67.10.104
 ```
