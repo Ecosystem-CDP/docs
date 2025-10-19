@@ -1,1 +1,10 @@
-docs/XX - Docs PIBIC/
+# Ignorar tudo
+/*
+
+# Exceto estas pastas e o README
+!README.md
+!OCI/
+!ODP/
+
+# Também permitir este próprio arquivo
+!.gitignore
