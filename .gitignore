@@ -1,10 +1,10 @@
-# Ignorar tudo
+# Ignorar tudo no diretório raiz
 /*
 
-# Exceto estas pastas e o README
+# Permitir apenas estes itens no repositório
 !README.md
-!OCI/
-!ODP/
+!assets/
+!docs/
 
-# Também permitir este próprio arquivo
+# Permitir este próprio arquivo
 !.gitignore
