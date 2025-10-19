@@ -99,24 +99,9 @@ Verifique:
 ```bash
 rpm -q ambari-server
 ```
-
 ***
 
-## 6. Instalar o ODP Stack (todos os nós)
-
-```bash
-sudo dnf install -y \
-  odp-core \
-  odp-hadoop \
-  odp-hive \
-  odp-spark
-```
-
-> Ajuste os pacotes conforme componentes desejados.
-
-***
-
-## 7. Pós-instalação do Ambari Server (master)
+## 6. Pós-instalação do Ambari Server (master)
 
 No **master-cdp**, finalize:
 
@@ -133,7 +118,7 @@ sudo systemctl status ambari-server
 
 ***
 
-## 8. Configurar e iniciar o Ambari Agent
+## 7. Configurar e iniciar o Ambari Agent
 
 Em **todos** os nós (incluindo o master):
 
@@ -155,7 +140,7 @@ Após estes passos, abra o Ambari Web em `http://master.cdp.dev.br:8080` e pross
 
 ***
 
-## 9. Modo offline (opcional)
+## 8. Modo offline (opcional)
 
 Se estiver seguindo a instalação offline descrita em `00-prérequisitos.md`, após copiar os pacotes para `/opt/odp-repo/` em todos os nós, ajuste os arquivos `.repo` para apontarem para o caminho local usando `file:///`.
 
