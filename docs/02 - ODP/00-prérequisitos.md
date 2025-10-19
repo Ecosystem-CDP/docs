@@ -118,6 +118,27 @@ grep -q pam_limits.so /etc/pam.d/system-auth \
        | sudo tee -a /etc/pam.d/system-auth
 ```
 
+### 5.5 SELinux
+
+Para evitar bloqueios durante a instalação inicial, configure o SELinux como permissivo em todos os nós:
+
+```bash
+getenforce
+sudo setenforce 0  # efeito imediato (temporário)
+```
+
+Torne permanente editando `/etc/selinux/config` e ajustando:
+
+```text
+SELINUX=permissive
+```
+
+Reinicie quando viável:
+
+```bash
+sudo reboot
+```
+
 ***
 
 ## 6. Sincronização de tempo
@@ -183,7 +204,7 @@ Verifique:
 
 ```bash
 hostname -f
-ping -c2 master-cdp devnull
+ping -c2 master-cdp
 ping -c2 node1-cdp
 ```
 

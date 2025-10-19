@@ -4,20 +4,15 @@ Esta etapa cobre a instalação e configuração inicial do Ambari Server e Amba
 
 ***
 
-## 1. Instalação dos Pacotes
+## 1. Verificação pré-instalação
 
-> Executar em **todos** os nós com privilégio sudo.
+Antes de continuar, confirme que os pacotes já foram instalados conforme o documento `01-configuracao-repositorio.md`.
 
-### 1.1. Ambari Server (apenas no master)
-
-```bash
-sudo dnf install -y ambari-server
-```
-
-### 1.2. Ambari Agent (em todos os nós)
+Para validar rapidamente:
 
 ```bash
-sudo dnf install -y ambari-agent
+rpm -q ambari-server || echo "Instalar no master: sudo dnf install -y ambari-server"
+rpm -q ambari-agent  || echo "Instalar em todos os nós: sudo dnf install -y ambari-agent"
 ```
 
 ***
@@ -45,6 +40,7 @@ Em **todos** os nós (incluindo master), edite `/etc/ambari-agent/conf/ambari-ag
 [server]
 hostname=master.cdp.dev.br
 url_port=8440
+secured_url_port=8441
 ```
 
 ***

@@ -11,10 +11,9 @@ Este documento detalha como configurar os repositórios oficiais da Clemlab para
 Em **todos** os nós, execute:
 
 ```bash
-sudo curl -fsSL \
-  https://clemlabs.s3.eu-west-3.amazonaws.com/RPM-GPG-KEY-SHA256-Jenkins \
-  | gpg --dearmor \
-  | sudo tee /etc/pki/rpm-gpg/RPM-GPG-KEY-clemlab > /dev/null
+sudo curl -fsSL -o /etc/pki/rpm-gpg/RPM-GPG-KEY-clemlab \
+  https://clemlabs.s3.eu-west-3.amazonaws.com/RPM-GPG-KEY-SHA256-Jenkins
+sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-clemlab
 ```
 
 ***
@@ -153,3 +152,27 @@ Em **todos** os nós (incluindo o master):
 ***
 
 Após estes passos, abra o Ambari Web em `http://master.cdp.dev.br:8080` e prossiga com o wizard de provisionamento do cluster.
+
+***
+
+## 9. Modo offline (opcional)
+
+Se estiver seguindo a instalação offline descrita em `00-prérequisitos.md`, após copiar os pacotes para `/opt/odp-repo/` em todos os nós, ajuste os arquivos `.repo` para apontarem para o caminho local usando `file:///`.
+
+Exemplo (ajuste os caminhos conforme a estrutura baixada):
+
+```ini
+[ambari-2.7.9.0-61]
+name=ambari-2.7.9.0-61
+baseurl=file:///opt/odp-repo/centos9-aarch64/ambari-release/2.7.9.0.0-61/rpms/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-clemlab
+```
+
+Recrie o cache do DNF:
+
+```bash
+sudo dnf clean all
+sudo dnf makecache
+```
