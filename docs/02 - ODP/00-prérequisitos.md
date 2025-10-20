@@ -173,16 +173,16 @@ Em cada nó, ajuste o hostname:
 
 ```bash
 # Master
-sudo hostnamectl set-hostname master.cdp.dev.br
+sudo hostnamectl set-hostname master.cdp
 
 # Node1
-sudo hostnamectl set-hostname node1.cdp.dev.br
+sudo hostnamectl set-hostname node1.cdp
 
 # Node2
-sudo hostnamectl set-hostname node2.cdp.dev.br
+sudo hostnamectl set-hostname node2.cdp
 
 # Node3
-sudo hostnamectl set-hostname node3.cdp.dev.br
+sudo hostnamectl set-hostname node3.cdp
 
 sudo reboot
 ```
@@ -217,7 +217,7 @@ No **master**, gere e distribua chaves:
 ```bash
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
 for host in master-cdp node1-cdp node2-cdp node3-cdp; do
-  ssh-copy-id opc@"${host}.cdp.dev.br"
+  ssh-copy-id opc@"${host}.cdp"
 done
 ```
 

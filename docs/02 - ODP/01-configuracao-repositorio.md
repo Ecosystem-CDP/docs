@@ -125,7 +125,7 @@ Em **todos** os nós (incluindo o master):
 1. Ajuste `/etc/ambari-agent/conf/ambari-agent.ini`, definindo:
    ```
    [server]
-   hostname=master.cdp.dev.br
+   hostname=master.cdp
    url_port=8440
    ```
 2. Habilite e inicie:
@@ -136,7 +136,7 @@ Em **todos** os nós (incluindo o master):
 
 ***
 
-Após estes passos, abra o Ambari Web em `http://master.cdp.dev.br:8080` e prossiga com o wizard de provisionamento do cluster.
+Após estes passos, abra o Ambari Web em `http://<IP_PUBLICO_MASTER>:8080` e prossiga com o wizard de provisionamento do cluster.
 
 ***
 

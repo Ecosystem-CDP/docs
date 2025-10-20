@@ -12,7 +12,7 @@ Tendo realizado o login agora iniciam-se as etapas de configuração referentes 
 ![Iniciando no Ambari](../../assets/images/image30.png)
 ---
 
-## Inicío do processo de configuração do Cluster
+## Início do processo de configuração do Cluster
 Aqui apenas escolhemos um nome para Cluster que estamos montando, neste sentido, por questões de padrão, manterei como **CDP**.
 
 ---
@@ -29,19 +29,16 @@ Após nomear o cluster na interface do Ambari, o próximo passo é selecionar a 
    - Clique em **"Add Version"** (Adicionar Versão) ou **"Adicionar versão personalizada"**, conforme a interface.
 
 2. **No campo "Version name" (Nome da Versão):**
-   - Defina um nome amigável para identificar a stack. Exemplo: `ODP 1.2.4.0`.
+   - Defina um nome amigável para identificar a stack. Exemplo: `ODP 1.2.2.0 (build 128)`.
 
-3. **No campo "Version Definition File (VDF) URL":**
-   - Cole o endereço abaixo:
-     ```
-     https://archive.clemlab.com/ubuntu22/odp-release/1.2.4.0-108/ODP-VDF.xml
-     ```
+3. **No campo de Upload (Add version):**
+   - Faça upload do arquivo ODP-VDF.xml (ODP-1.2.2.0-128). Utilize o arquivo disponível no repositório em `assets/odp-vdf/ODP-VDF.xml`.
 
 4. **Clique em "Next" (Avançar) ou "OK", conforme disponível.**
    - O Ambari fará o download e validação do arquivo VDF.
    - Aguarde até que a stack ODP apareça listada entre as versões disponíveis.
 
-5. **Selecione a stack recém-adicionada ("ODP 1.2.4.0").**
+5. **Selecione a stack recém-adicionada ("ODP 1.2.2.0").**
 
 6. **Prossiga com o assistente de configuração normalmente.**
    - Siga para as próximas telas onde será definida a origem dos repositórios, serviços e mapeamento dos nós.
@@ -56,10 +53,10 @@ Deve ficar como na imagem abaixo:
 Apenas para fins de verificação, execute os comandos abaixo em sua máquina master e verifique se retorna "OK" **para todos**.
 
 ```bash
-ssh ubuntu@master.clemlab.local "hostname -f && echo OK"
-ssh ubuntu@node1.clemlab.local "hostname -f && echo OK"
-ssh ubuntu@node2.clemlab.local "hostname -f && echo OK"
-ssh ubuntu@node3.clemlab.local "hostname -f && echo OK"
+ssh opc@master.cdp.dev.br "hostname -f && echo OK"
+ssh opc@node1.cdp.dev.br "hostname -f && echo OK"
+ssh opc@node2.cdp.dev.br "hostname -f && echo OK"
+ssh opc@node3.cdp.dev.br "hostname -f && echo OK"
 ```
 
 Após validar o acesso SSH sem senha entre o nó master e todos os demais nós do cluster usando seus nomes FQDN, siga para os passos abaixo:
@@ -72,10 +69,10 @@ Na etapa "Install Options" do instalador do Ambari:
    - Insira uma lista dos nomes FQDN de todos os nós do cluster, um por linha (conforme definido previamente).
      Exemplo:
      ```
-     master.clemlab.local
-     node1.clemlab.local
-     node2.clemlab.local
-     node3.clemlab.local
+     master.cdp.dev.br
+     node1.cdp.dev.br
+     node2.cdp.dev.br
+     node3.cdp.dev.br
      ```
 2. **Host Registration Information**
    - Selecione a opção **"Perform manual registration on hosts and do not use SSH"** (Registrar manualmente os hosts e não usar SSH automático).
@@ -101,7 +98,7 @@ Após inserir os FQDNs dos nós do cluster e optar pelo registro manual, o Ambar
 ![Confirmação de hosts no Ambari](../../assets/images/image34.png)
 ---
 
-Na imagem, todos os nós (`master.clemlab.local`, `node1.clemlab.local`, `node2.clemlab.local`, `node3.clemlab.local`) foram registrados com sucesso e os "host checks" passaram sem falhas.
+Na imagem, todos os nós (`master.cdp.dev.br`, `node1.cdp.dev.br`, `node2.cdp.dev.br`, `node3.cdp.dev.br`) foram registrados com sucesso e os "host checks" passaram sem falhas.
 
 Quando todos os hosts apresentarem o status **Success**, a infraestrutura básica do cluster está pronta para a definição dos serviços e papéis de cada nó.
 
@@ -111,20 +108,16 @@ Após a confirmação dos hosts do cluster, a próxima etapa consiste na **sele�
 
 ### Componentes selecionados para este ambiente
 
-Para o projeto atual, serão instalados os seguintes componentes centrais:
+Para o setup inicial (base), selecione apenas os seguintes serviços:
 
-- **YARN + MapReduce2**: Gerenciamento de recursos e processamento distribuído de dados.
-- **Hive**: Data warehouse para consultas SQL sobre grandes volumes de dados em HDFS.
-- **Ambari Metrics**: Coleta, armazenamento e visualização de métricas do cluster.
-- **Atlas**: Catalogação, governança e rastreamento de linhagem dos dados.
-- **Kafka**: Plataforma de streaming para ingestão e processamento de eventos em tempo real.
-- **Spark3**: Engine de processamento distribuído em memória para análises avançadas.
-- **Infra Solr**: Serviço de indexação e busca baseado no Apache Solr, utilizado internamente pelo cluster para suportar funcionalidades como busca rápida de logs, auditorias e metadados em serviços como Atlas e Ranger. 
-- **ZooKeeper**: Serviço centralizado para coordenação e gerenciamento de configuração, sincronização, eleição de líderes e registro de nomes entre serviços distribuídos.
-- **Tez**: Framework avançado de execução para processamento de dados no Hadoop. Permite criar e processar grafos direcionados acíclicos (DAGs) de tarefas de dados, otimizando e acelerando queries complexas em frameworks como Hive e Pig.
+- **ZooKeeper**: Coordenação e sincronização dos serviços distribuídos.
+- **HDFS**: Armazenamento distribuído base do ecossistema.
+- **YARN + MapReduce2**: Gerenciamento de recursos e processamento distribuído.
+- **Tez**: Engine DAG sobre YARN, otimiza performance do Hive e pipelines no Hadoop.
 
-
-Esses componentes formam o núcleo de um Data Lake moderno, suportando cargas batch, streaming, consultas interativas e governança.
+Observações:
+- Esta seleção reflete a base adotada no blueprint do ambiente cdp.dev.br para garantir compatibilidade e evitar conflitos.
+- Os demais componentes (ex.: Hive, Ambari Infra Solr, Ranger, Kafka, HBase, NiFi, Spark3, etc.) deverão ser adicionados após a conclusão do setup inicial, um por vez, seguindo a ordem recomendada no documento `03.1-configuracao-servicos-componentes.md`. As configurações específicas de cada um serão tratadas no documento `04-pos-instalacao.md`.
 
 ---
 
@@ -152,31 +145,20 @@ Durante o assistente de configuração do Ambari, após a seleção dos componen
 
 ---
 
-### Distribuição recomendada dos componentes
+### Distribuição recomendada dos componentes (setup inicial)
 
-| Função                       | Nó designado         |
-|------------------------------|----------------------|
-| NameNode                     | node1.clemlab.local  |
-| Secondary NameNode           | master.clemlab.local |
-| Timeline Service V1.5        | node1.clemlab.local  |
-| YARN Registry DNS            | node1.clemlab.local  |
-| Timeline Service V2.0 Reader | master.clemlab.local |
-| ResourceManager              | master.clemlab.local |
-| History Server               | master.clemlab.local |
-| Hive Metastore               | master.clemlab.local |
-| HiveServer2                  | master.clemlab.local |
-| ZooKeeper Server (1)         | node2.clemlab.local  |
-| ZooKeeper Server (2)         | node1.clemlab.local  |
-| ZooKeeper Server (3)         | master.clemlab.local |
-| Metrics Collector            | master.clemlab.local |
-| Grafana                      | master.clemlab.local |
-| Atlas Metadata Server        | master.clemlab.local |
-| Kafka Broker (1)             | node2.clemlab.local  |
-| Kafka Broker (2)             | node1.clemlab.local  |
-| Kafka Broker (3)             | node3.clemlab.local  |
-| Spark3 History Server        | master.clemlab.local |
-| Infra Solr Instance          | master.clemlab.local |
-| HBase Master                 | master.clemlab.local |
+| Função                       | Nó designado             |
+|------------------------------|--------------------------|
+| NameNode                     | master.cdp.dev.br        |
+| Secondary NameNode           | master.cdp.dev.br        |
+| ResourceManager              | master.cdp.dev.br        |
+| History Server               | master.cdp.dev.br        |
+| App Timeline Server          | master.cdp.dev.br        |
+| Timeline Service V2.0 Reader | master.cdp.dev.br        |
+| YARN Registry DNS            | master.cdp.dev.br        |
+| ZooKeeper Server (1)         | master.cdp.dev.br        |
+| ZooKeeper Server (2)         | node1.cdp.dev.br         |
+| ZooKeeper Server (3)         | node3.cdp.dev.br         |
 
 > **Atenção:**
 > Não altere esta configuração recomendada — ela foi desenhada para garantir distribuição de carga, robustez na operação e boa prática em ambientes de clusters Hadoop/Spark.
@@ -199,79 +181,52 @@ Na sequência do assistente de configuração do Ambari, após definir os master
 
 ### O que fazer nesta etapa
 
-Realize a marcação exatamente como apresentado na tela de referência do assistente (todas as opções “DataNode”, “NodeManager”, “Spark3 Livy Server”, “Spark3 Thrift Server”, “Client” selecionadas para todos os nodes, exceto os gateways apenas quando necessário).
+Para o setup inicial, marque:
+- DataNode: em `node1.cdp.dev.br`, `node2.cdp.dev.br` e `node3.cdp.dev.br`.
+- NodeManager: em `node1.cdp.dev.br`, `node2.cdp.dev.br` e `node3.cdp.dev.br`.
+
+Os componentes cliente (HDFS/YARN/Tez) serão atribuídos automaticamente conforme a seleção dos serviços. Não inclua componentes de serviços ainda não instalados (ex.: Spark3, Hive) nesta etapa; eles serão adicionados posteriormente.
 
 ---
 ![Seleção de Componentes](../../assets/images/image45.png)
 ---
 ## Customização de Serviços
 
-### Passo 1 – Preenchimento dos Dados de Credentials
+Para o setup inicial com os serviços base (ZooKeeper, HDFS, YARN + MapReduce2 e Tez), ajuste somente o essencial nesta etapa:
 
-Nesta primeira etapa ("Credentials") da configuração no assistente do Ambari/ODP, será solicitado que você insira o nome de usuário e as senhas para os serviços essenciais do cluster, como Grafana Admin, Atlas Admin e Hive Database.
+- HDFS
+  - Replicação padrão (dfs.replication): defina 3 se houver pelo menos três DataNodes; caso contrário, utilize 1 ou 2.
+  - Diretórios de dados: confirme/ajuste os caminhos para NameNode/DataNode e garanta que existem com permissão adequada (ex.: `/hadoop/hdfs/namenode`, `/hadoop/hdfs/datanode`).
+- YARN
+  - Verifique os limites de memória/vcores do NodeManager conforme os recursos das VMs (ex.: shapes A1 com ~6 GiB RAM); mantenha valores conservadores no início.
+  - Ative/revise Log Aggregation se necessário para facilitar troubleshooting.
+- MapReduce2
+  - Confirme `mapreduce.framework.name=yarn` (padrão) e o local do Job History (History Server) no HDFS.
+- Tez
+  - Mantenha as configurações padrão inicialmente; confirme `tez.use.cluster.hadoop-libs=true` quando aplicável.
 
-- **O que fazer:**
-  - Defina senhas para cada serviço nas caixas indicadas.
-  - Você pode padronizar as senhas, utilizando uma mesma senha forte para todos os campos, facilitando a administração inicial do ambiente.
-  - Lembre-se de anotar as credenciais em local seguro para uso futuro nas interfaces administrativas dos serviços.
-  - Confirme cada senha digitando novamente no campo de confirmação correspondente.
+Validação após ajustes
+- Execute os Service Checks de HDFS e YARN no Ambari (Actions → Run Service Check) e corrija eventuais alertas antes de avançar.
+- Garanta que as portas e firewall estão liberadas conforme “00-prérequisitos.md” e que o SELinux está em modo permissivo durante a instalação inicial.
 
----
-![Atribuição de senhas](../../assets/images/image37.png)
----
-
-Após preencher todos os campos, clique em **Next** para avançar à próxima etapa da configuração. Neste caso, passaremos mais tempo na etapa de *All Configurations*. Neste sentido, existem algumas configurações prévias que devem ser executadas na máquina **Master** do seu cluster, portanto, além de ir até a etapa de *All Configurations*, também realize o acesso via SSH à instância de sua máquina Master para o procedimento abaixo:
-
-Em sua máquina master, para configurações adicionais prévias quanto ao Apache Atlas, insira os seguintes comandos abaixo:
-
-```bash
-sudo mkdir -p /etc/atlas/conf/
-```
-
-No campo *MinhaSenhaForte123* abaixo, lembre-se de trocar por uma senha padrão, que você se lembre. Caso prefira essa também pode manter, mas lembre-se dela.
-
-```bash
-sudo keytool -genkey -alias atlasserver -keyalg RSA -sigalg SHA256withRSA \
-  -keystore /etc/atlas/conf/atlas.keystore -storepass MinhaSenhaForte123 -validity 3650 \
-  -dname "CN=master.clemlab.local, OU=YourUnit, O=YourOrg, L=YourCity, S=YourState, C=BR"
-```
-
-Nas próximas etapas abaixo, conforme as imagens realize as alterações necessárias para o correto funcionamento do HDFS e do Atlas. Primeiro aumente o tamanho numérico do espaço reservado ao HDFS (conforme *tip* do próprio sistema, x10 o valor atual).
-
----
-![Atribuição de senhas](../../assets/images/image48.png)
----
-
-Agora vá nas configurações do Atlas e em Avançado (*Advanced*), role até a parte debaixo da tela e deixe os caminhos exatemente conforme a imagem. Na imagem há a palavra *changeit*, essa é sua senha, insira dessa maneira. A outra senha que não aparece é exatamente a mesma senha que usou no passo anterior, então se tiver deixado como especificamos antes, deve ser algo como *MinhaSenhaForte123*.
-
----
-![Atribuição de senhas](../../assets/images/image47.png)
----
-
----
-![Atribuição de senhas](../../assets/images/image46.png)
----
-
-Enfim, realize a revisão dos processos, inclusive recomendo que baixe o arquivo blueprint (JSON) de tudo que você fez e realize o deploy através do botão.
-
----
-![Atribuição de senhas](../../assets/images/image49.png)
----
+Observações importantes
+- As credenciais e configurações de serviços adicionais como Hive, Ambari Infra Solr, Ranger, Kafka, HBase, NiFi e Spark3 serão definidas quando esses serviços forem instalados, um por vez, seguindo a ordem recomendada em `03.1-configuracao-servicos-componentes.md` e com detalhes práticos no documento `04-pos-instalacao.md`.
+- Recomendamos exportar o blueprint do cluster ao final do wizard para versionamento e auditoria (Ambari → Export Blueprint).
 
 É comum que nessa etapa de instalação dos componentes hajam problemas de instalação, portanto, existem alguns procedimentos recomendados de instalação para serem executados com o objetivo de tornar mais simples o processo. Isso exigirá que acesse via SSH sua máquina master e as demais máquinas nós.
 
 Uma dica, como já realizou a configuração via SSH entre as próprias máquinas, é interessante então que apenas use os comandos de SSH dentro da própria master para acessar as demais máquina, como no exemplo abaixo:
 
 ```bash
-ssh master.clemlab.local
-ssh node1.clemlab.local
-ssh node2.clemlab.local
-ssh node3.clemlab.local
+ssh master.cdp.dev.br
+ssh node1.cdp.dev.br
+ssh node2.cdp.dev.br
+ssh node3.cdp.dev.br
 ```
 
-Entre no arquivo abaixo e execute em cada nó cada um dos comandos sugeridos, pois estes irão instalar manualmente alguns dos componentes que apresentaram problemas nessa prática e também configurar partes importantes ao banco de dados e evitar que hajam tarefas em espera que devam ser configuradas.
+Para avançar com a instalação dos demais serviços na ordem recomendada e aplicar ajustes pós-instalação, siga o documento abaixo:
 
-- [`docs/02-ODP/03.2-configuracao-servicos-maquinas.md`](./03.2-configuracao-servicos-maquinas.md)
+- [`04-pos-instalacao.md`](./04-pos-instalacao.md)
 
 É muito comum que os erros vistos acima acontecem, como também outros que talvez possam não eestar aí, caso ocorra, abra um issue no GitHub para que acrescente à base de conhecimento.
 
