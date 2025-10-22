@@ -207,4 +207,3 @@ Dependendo do seu caso de uso, você pode instalar depois (um a um): Knox, Atlas
 - Banco do Hive Metastore não inicializa: confirme driver JDBC instalado (o Ambari geralmente provisiona), credenciais válidas, e que a senha cumpre a política. Verifique logs em /var/log/hive/ e /var/log/ambari-agent/.
 - Ranger sem auditoria: valide URL do Solr (8886), estado do core "ranger_audits" e conectividade de rede.
 
-Com isso, a instalação pós-base fica concluída. Cada serviço foi instalado pela interface do Ambari (com mínimo de comandos) e está pronto para ajustes finos de desempenho e segurança conforme o seu uso.

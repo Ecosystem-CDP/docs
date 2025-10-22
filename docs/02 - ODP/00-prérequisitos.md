@@ -212,21 +212,56 @@ ping -c2 node1-cdp
 
 ## 10. SSH sem senha (passwordless SSH)
 
-No **master**, gere e distribua chaves:
+Procedimento manual (recomendado, passo a passo) exatamente como validado em produção:
+
+1) No nó master, gere a chave:
 
 ```bash
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
-for host in master-cdp node1-cdp node2-cdp node3-cdp; do
-  ssh-copy-id opc@"${host}.cdp"
+```
+
+2) Para cada host, crie o diretório de chaves, copie a chave pública e ajuste permissões manualmente.
+
+Exemplo por host (repita para master, node1, node2, node3):
+
+```bash
+# Troque <host_fqdn> pelo host_name dos seus hosts:
+# (opcional) Primeira conexão para registrar no known_hosts e evitar prompts em loops
+ssh -o StrictHostKeyChecking=no opc@<host_fqdn> "echo OK"
+
+# Crie o diretório .ssh com as permissões corretas
+ssh opc@<host_fqdn> "mkdir -p ~/.ssh && chmod 700 ~/.ssh && touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && chown -R opc:opc ~/.ssh"
+
+# Copie a chave pública do master para o host alvo
+scp ~/.ssh/id_rsa.pub opc@<host_fqdn>:/tmp/master_id_rsa.pub
+
+# Anexe ao authorized_keys e remova o arquivo temporário
+ssh opc@<host_fqdn> "cat /tmp/master_id_rsa.pub >> ~/.ssh/authorized_keys && rm -f /tmp/master_id_rsa.pub && chmod 600 ~/.ssh/authorized_keys"
+```
+
+3) Teste o acesso sem senha para cada host:
+
+```bash
+ssh opc@<PUBLIC_IPv4_master> hostname -f
+ssh opc@<PUBLIC_IPv4_node1> hostname -f
+ssh opc@<PUBLIC_IPv4_node2> hostname -f
+ssh opc@<PUBLIC_IPv4_node3> hostname -f
+```
+
+Alternativa com loop (sem usar ssh-copy-id):
+
+```bash
+for h in master.cdp.dev.br node1.cdp.dev.br node2.cdp.dev.br node3.cdp.dev.br; do
+  ssh -o StrictHostKeyChecking=no opc@$h "mkdir -p ~/.ssh && chmod 700 ~/.ssh && touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && chown -R opc:opc ~/.ssh" && \
+  scp ~/.ssh/id_rsa.pub opc@$h:/tmp/master_id_rsa.pub && \
+  ssh opc@$h "cat /tmp/master_id_rsa.pub >> ~/.ssh/authorized_keys && rm -f /tmp/master_id_rsa.pub && chmod 600 ~/.ssh/authorized_keys" && \
+  ssh opc@$h "hostname -f" || echo "Falha em $h"
 done
 ```
 
-Teste:
-
-```bash
-ssh opc@node1-cdp.cdp.dev.br hostname -f
-```
-
+Notas importantes:
+- Execute tudo como usuário `opc` (com sudo disponível), exatamente como na instalação.
+- Garanta que a porta 22/tcp esteja liberada no firewall/NSG e que os FQDNs do item 9 resolvam corretamente.
 ***
 
 ## 11. Limpeza e cache do DNF
