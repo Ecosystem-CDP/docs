@@ -200,7 +200,7 @@ Dependendo do seu caso de uso, você pode instalar depois (um a um): Knox, Atlas
 - Firewall ajustado apenas para as portas realmente necessárias.
 
 ------------------------------------------------------------
-## Solução de problemas comuns (dos PDFs “conversation”)
+## Solução de problemas comuns
 ------------------------------------------------------------
 - Falhas por senha fora do padrão: revise a política no Ranger e recrie usuários/credenciais atendendo aos requisitos. Evite caracteres não suportados por determinados backends (ex.: barras invertidas em alguns contextos JDBC).
 - Service Check falha logo após instalação: aguarde estabilização, confirme dependências (ZK/HDFS/YARN), reabra portas no firewall e verifique SELinux (use permissive durante a instalação; depois, avalie políticas SE para produção).
