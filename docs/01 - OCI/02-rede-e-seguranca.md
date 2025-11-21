@@ -124,7 +124,25 @@ Um **Network Security Group (NSG)** permite definir regras de segurança de rede
 
 Lembre-se também de conectar a tabela de roteamento da sua subrede ao seu internet gateway, pois assim as máquinas poderão realizar acesso à internet.
 
-## 4. Configuração de Portas Obrigatórias para ODP, Ambari e Hadoop
+## 4. Configuração da tabela de roteamento
+
+No contexto de criação de uma tabela de roteamento, é necessário adicionar uma regra de roteamento para o gateway de internet criado anteriormente. Dessa forma, as máquinas criadas conseguiram realizar acesso à internet.
+
+Para chegar até essa tela, siga os seguintes passos:
+
+1. No painel da Oracle Cloud Infrastructure (OCI), acesse:
+   - **Menu** > **Rede** > **VCN**
+2. Clique sobre a VCN criada anteriormente e vá em **Routes**.
+3. Espere carregar e veja se já existe uma tabela de roteamento padrão. Se existir, clique sobre ela e vá em **Configurações**. (se preferir, pode clicar em **Criar tabela de roteamento** para criar uma nova tabela de roteamento.)
+4. Clique em **Criar tabela de roteamento** para criar uma nova tabela de roteamento.
+
+---
+![Configuração de tabela de roteamento](../../assets/images/image53.png)
+
+![Configuração de tabela de roteamento](../../assets/images/image54.png)
+---
+
+## 5. Configuração de Portas Obrigatórias para ODP, Ambari e Hadoop
 
 Para o funcionamento correto do cluster Hadoop/Spark com ODP e Ambari, é necessário liberar o tráfego das seguintes portas nas **Listas de Segurança (Security List)** e, nos **Network Security Groups (NSG)** associados à VCN e às sub-redes do projeto:
 
@@ -157,7 +175,7 @@ Para o funcionamento correto do cluster Hadoop/Spark com ODP e Ambari, é necess
 
 Com base nas imagens anteriores, crie, exatamente da mesma forma, as regras de **ingress** para as portas 8440 e 8441.
 
-## 5. Verificação de acesso da tabela de roteamento
+## 6. Verificação de acesso da tabela de roteamento
 
 Verifique ainda se na tabela de roteamento associada à VCN e à sua subnet, normalmente a default, está com essa regra abaixo. Caso não esteja, é importante que o faça, pois se não estiver, não será possível acessar a internet com nenhuma das máquinas, como também, nem acessá-las via OpenSSH.
 
