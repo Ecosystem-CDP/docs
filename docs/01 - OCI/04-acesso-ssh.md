@@ -12,7 +12,7 @@ Após criar suas instâncias na Oracle Cloud Infrastructure (OCI) e informar a c
 O comando geral para acessar uma máquina via SSH é:
 
 ```bash
-ssh -i <caminho_para_sua_chave_privada> ubuntu@<ip_publico_da_maquina>
+ssh -i <caminho_para_sua_chave_privada> opc@<ip_publico_da_maquina>
 ```
 
 

@@ -24,7 +24,7 @@ A tabela abaixo apresenta, em ordem lógica e sequencial, os principais passos p
 | 11    | Criar Par de Chaves SSH | Geração local para acesso seguro às instâncias. |
 | 12    | (Opcional) Criar Block Volumes | Para armazenamento de dados HDFS/Hive em cada VM. |
 | 13    | Revisar Limites de Quotas | Verifique se há recursos suficientes para criar todas as VMs necessárias. |
-| 14    | Criar Instâncias de Computação (VMs) | Master, node1, node2, node3, com Ubuntu 22.04. |
+| 14    | Criar Instâncias de Computação (VMs) | Master, node1, node2, node3, com Oracle Linux 9. |
 | 15    | Anexar Volumes em Bloco às VMs | Para dados do cluster, se necessário. |
 | 16    | Validar Acesso SSH e Configuração de Rede | Teste conectividade e resolução de nomes entre as VMs. |
 

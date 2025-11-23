@@ -37,7 +37,7 @@ Ainda em cada nó, execute os comandos abaixo para garantir a segurança correta
 echo "<your-public-key>" >> ~/.ssh/authorized_keys
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
-chown ubuntu:ubuntu ~/.ssh ~/.ssh/authorized_keys
+chown opc:opc ~/.ssh ~/.ssh/authorized_keys
 ```
 
 > ⚠️ Esses ajustes são **obrigatórios**. Se não forem feitos, a autenticação SSH por chave pode falhar silenciosamente.
@@ -47,7 +47,7 @@ chown ubuntu:ubuntu ~/.ssh ~/.ssh/authorized_keys
 De volta ao master, teste o acesso sem senha a cada nó:
 
 ```bash
-ssh ubuntu@node1
-ssh ubuntu@node2
-ssh ubuntu@node3
+ssh opc@node1
+ssh opc@node2
+ssh opc@node3
 ```

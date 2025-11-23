@@ -55,10 +55,10 @@ Serão criadas **4 instâncias**:
 
 | Função  | Shape sugerido | Sistema Operacional |
 |---------|----------------|---------------------|
-| master  | VM.Standard.E4.Flex (1 OCPU, 6 GB) / VM.Standard.A1.Flex (1 OCPU, 6 GB) | Ubuntu 22.04 |
-| node1  | VM.Standard.E4.Flex (1 OCPU, 6 GB) / VM.Standard.A1.Flex (1 OCPU, 6 GB)  | Ubuntu 22.04 |
-| node2  | VM.Standard.E4.Flex (1 OCPU, 6 GB) / VM.Standard.A1.Flex (1 OCPU, 6 GB)  | Ubuntu 22.04 |
-| node3  | VM.Standard.E4.Flex (1 OCPU, 6 GB) / VM.Standard.A1.Flex (1 OCPU, 6 GB)  | Ubuntu 22.04 |
+| master  | VM.Standard.E4.Flex (1 OCPU, 6 GB) / VM.Standard.A1.Flex (1 OCPU, 6 GB) | Oracle Linux 9 |
+| node1  | VM.Standard.E4.Flex (1 OCPU, 6 GB) / VM.Standard.A1.Flex (1 OCPU, 6 GB)  | Oracle Linux 9 |
+| node2  | VM.Standard.E4.Flex (1 OCPU, 6 GB) / VM.Standard.A1.Flex (1 OCPU, 6 GB)  | Oracle Linux 9 |
+| node3  | VM.Standard.E4.Flex (1 OCPU, 6 GB) / VM.Standard.A1.Flex (1 OCPU, 6 GB)  | Oracle Linux 9 |
 
 ## 2. Processo de criação das instâncias
 Uma **instância** na Oracle Cloud Infrastructure (OCI) é uma máquina virtual (VM) ou bare metal criada a partir de um shape (configuração de CPU, memória e rede), utilizada para executar sistemas operacionais, aplicações e serviços diversos. No contexto deste projeto, cada nó do cluster Hadoop/Spark é representado por uma instância, podendo ser master ou worker.
