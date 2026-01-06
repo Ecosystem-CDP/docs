@@ -40,7 +40,7 @@ chmod 600 ~/.ssh/authorized_keys
 chown opc:opc ~/.ssh ~/.ssh/authorized_keys
 ```
 
-> ⚠️ Esses ajustes são **obrigatórios**. Se não forem feitos, a autenticação SSH por chave pode falhar silenciosamente.
+> Esses ajustes são **obrigatórios**. Se não forem feitos, a autenticação SSH por chave pode falhar silenciosamente.
 
 #### Passo 5: Teste a conexão sem senha
 
