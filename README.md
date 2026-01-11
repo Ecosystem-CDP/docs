@@ -37,7 +37,7 @@ Se o seu objetivo é **aprender** sobre cada componente da infraestrutura ou rea
 
 ## Modelos e Anexos
 
-Consulte a pasta **[Assets](./assets)** para exemplos de arquivos de configuração e templates genéricos utilizados no projeto.
+Consulte a pasta **[Assets](https://github.com/Ecosystem-CDP/assets)** para exemplos de arquivos de configuração e templates genéricos utilizados no projeto.
 
 ---
 
