@@ -26,7 +26,7 @@ Consulte a documentação detalhada em **[03 - CDP](./docs/03%20-%20CDP)**:
 
 ---
 
-## Implantação Manual (Didática)
+## Implantação Manual 
 
 Se o seu objetivo é **aprender** sobre cada componente da infraestrutura ou realizar uma instalação "from scratch" para fins de estudo, siga o fluxo manual original. Este método é mais trabalhoso e suscetível a erros humanos, sendo recomendado apenas para aprofundamento técnico.
 
