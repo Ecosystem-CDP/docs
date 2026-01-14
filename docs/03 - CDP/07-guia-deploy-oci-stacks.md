@@ -13,7 +13,7 @@ A maneira recomendada de realizar o deploy deste projeto na Oracle Cloud é util
 ##  Passo a Passo
 
 ### 1. Preparar o Pacote
-Compacte todo o conteúdo da pasta `infra-terraform-main` em um arquivo `.zip`. Certifique-se de que o arquivo `main.tf` (ou arquivos `.tf` e `schema.yaml`) estejam na raiz do zip, e não dentro de uma subpasta.
+Acesse [infra-terraform-main](https://github.com/Ecosystem-CDP/infra-terraform-main) e faça o download do arquivo `infra-terraform-main.zip`. Extraia o arquivo e o use como stack para o procedimento que vem a seguir.
 
 ### 2. Criar a Stack
 1.  Faça login no Console da OCI.
@@ -27,7 +27,7 @@ Compacte todo o conteúdo da pasta `infra-terraform-main` em um arquivo `.zip`. 
     *   **Name**: Dê um nome, ex: `CDP-Data-Lake`.
     *   Clique em **Next**.
 
-![Imagem: Tela de criação de Stack - Upload Zip]
+![Stack Information](../../assets/images/image-stack-01.png)
 
 ### 3. Configurar Variáveis
 Graças ao arquivo `schema.yaml` incluído no projeto, o OCI irá gerar um formulário customizado. Preencha os campos:
@@ -43,7 +43,12 @@ Graças ao arquivo `schema.yaml` incluído no projeto, o OCI irá gerar um formu
 
 Clique em **Next**.
 
-![Imagem: Formulário de variáveis da Stack]
+![Stack Information](../../assets/images/image-stack-02.png)
+![Stack Information](../../assets/images/image-stack-03.png)
+![Stack Information](../../assets/images/image-stack-04.png)
+![Stack Information](../../assets/images/image-stack-05.png)
+![Stack Information](../../assets/images/image-stack-06.png)
+![Stack Information](../../assets/images/image-stack-07.png)
 
 ### 4. Review e Deploy
 1.  Revise as configurações na tela final.
@@ -61,7 +66,7 @@ Após criar a Stack, você será redirecionado para a página de **Job Details**
 3.  O processo levará cerca de **25 a 45 minutos** (pois inclui a instalação do Ambari e provisionamento do cluster Hadoop).
 4.  Ao final, se tudo der certo, o status do Job ficará verde (**Succeeded**).
 
-![Imagem: Logs do Terraform no Resource Manager]
+![Stack Information](../../assets/images/image-stack-08.png)
 
 ##  Destruindo o Ambiente
 Para apagar tudo e parar a cobrança:
