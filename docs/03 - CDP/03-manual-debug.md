@@ -75,6 +75,20 @@ Se o Ambari Server diz "Running" mas você não acessa a porta 8080:
 *   Verifique o Firewall da Oracle Cloud (Security List da VCN). A porta 8080 deve estar aberta para o seu IP.
 *   Verifique firewall local (embora normalmente desabilitado pela automação): `systemctl status firewalld`.
 
+### 5. Timeout ou Falha de Conexão via ISP Específico (Roteamento)
+Se você não consegue acessar suas instâncias (SSH timeout, falha de ping/tracert) mas o acesso funciona normalmente via 4G ou outra rede:
+
+*   **Sintomas**:
+    *   SSH na porta 22 dá timeout.
+    *   Interfaces web não carregam.
+    *   Security Lists e Firewalls estão corretos (testado via outra rede).
+*   **Diagnóstico**:
+    *   Execute um `tracert` (Windows) ou `traceroute` (Linux) para o IP da instância. Se o tráfego morrer no backbone do seu provedor antes de chegar à Oracle, é um problema de roteamento (BGP/Uplink).
+*   **Solução**:
+    *   Entre em contato com o suporte técnico do seu provedor de internet (ISP).
+    *   Informe que há uma falha de roteamento para os prefixos de IP da Oracle Cloud.
+    *   Este é um problema de borda/uplink do provedor e não requer alterações na sua infraestrutura ou na OCI.
+
 ---
 
 ##  Acesso Manual à API
