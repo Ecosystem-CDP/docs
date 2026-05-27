@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Prepare shared assets for MkDocs link validation
+        run: rm -rf docs/assets && cp -R assets docs/assets
+
       - name: Build documentation
         run: mkdocs build --strict
 
