@@ -1,8 +1,3 @@
----
-title: "01 • Controle de Acesso"
-weight: 20
----
-
 # 01 • Controle de Acesso
 
 ## 1. Criação do Compartimento

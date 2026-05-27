@@ -1,8 +1,3 @@
----
-title: "00 • Projeto: Data Lake Open Source na Oracle Cloud Infrastructure"
-weight: 10
----
-
 # 00 • Projeto: Data Lake Open Source na Oracle Cloud Infrastructure
 
 ## 1. Objetivo

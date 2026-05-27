@@ -1,8 +1,3 @@
----
-title: "00 • Pré-requisitos para OCI"
-weight: 10
----
-
 # 00 • Pré-requisitos para OCI
 
 ## 1. Criação da conta

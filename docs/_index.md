@@ -4,9 +4,4 @@ weight: 1
 icon: "menu_book"
 ---
 
-Escolha um trilho para começar:
-
-- [Visão Geral](/docs/00---visão-geral/)
-- [Implantação CDP (automatizada)](/docs/03---cdp/)
-- [Infraestrutura OCI](/docs/01---oci/)
-- [Instalação ODP](/docs/02---odp/)
+Navegue pelas secções na barra lateral. A documentação completa permanece nos ficheiros originais do projeto PIBIC.

@@ -1,8 +1,3 @@
----
-title: "00 -  Pré-requisitos"
-weight: 10
----
-
 # 00 -  Pré-requisitos
 
 Este documento descreve todos os requisitos mínimos — de infraestrutura, software e acesso — para que a instalação da OpenSource Data Platform (ODP) 1.2.4.0 seja feita em qualquer ambiente Oracle Cloud Infrastructure (OCI) ou em servidores bare-metal compatíveis, usando **Oracle Linux 9** em **arquitetura ARM64**.
@@ -284,4 +279,4 @@ curl -I https://archive.clemlab.com/centos9-aarch64/
 
 ***
 
-Após concluir estes pré-requisitos, prossiga para [Configuração do repositório](../01-configuracao-repositorio/), onde será configurado o repositório ODP e iniciada a instalação do Ambari.
+Após concluir estes pré-requisitos, prossiga para `01-configuracao-repositorio.md`, onde será configurado o repositório ODP e iniciada a instalação do Ambari.

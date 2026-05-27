@@ -1,8 +1,3 @@
----
-title: "02 - Guia Técnico de Automação"
-weight: 20
----
-
 # 02 - Guia Técnico de Automação
 
 Este documento detalha o funcionamento técnico da automação do cluster Ambari.

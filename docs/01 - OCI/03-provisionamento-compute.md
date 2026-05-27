@@ -1,8 +1,3 @@
----
-title: "03 • Provisionamento das Máquinas Virtuais"
-weight: 40
----
-
 # 03 • Provisionamento das Máquinas Virtuais
 
 ## 1. Geração de Chaves SSH para Acesso às Instâncias
@@ -75,30 +70,35 @@ Instâncias podem ser configuradas com diferentes recursos de armazenamento, con
 1. No painel da Oracle Cloud Infrastructure (OCI), acesse:
    - **Menu** > **Compute** > **Instances**
 
-![Caminho para criação de instância](/docs/assets/images/image14.png)
-
+---
+![Caminho para criação de instância](../../assets/images/image14.png)
+---
 
 Neste menu, dê o nome de **master** para a instância e mude a imagem para a do **Oracle Linux 9**
 
-![Caminho para criação de instância 2](/docs/assets/images/image52.png)
-
+---
+![Caminho para criação de instância 2](../../assets/images/image52.png)
+---
 
 Selecione conforme a imagem as informações de shape, com a qtda de OCPU e memória adequados. Recomendo que inicialmente use o shape **VM.Standard.A1.Flex (1 OCPU, 6 GB)** que estará em **Ampere**. 
 
-![Caminho para criação de instância 4](/docs/assets/images/image17.png)
-![Caminho para criação de instância 3](/docs/assets/images/image16.png)
-
+---
+![Caminho para criação de instância 4](../../assets/images/image17.png)
+![Caminho para criação de instância 3](../../assets/images/image16.png)
+---
 
 Em **Segurança**, mantenha como está. Em **Network**, as opções já serão marcadas automaticamente, mas caso não, seriam essas as corretas. Muita atençâo à adicionar, ainda nessa etapa, a chave SSH que você criou, à sua instância, pois caso contrário, não conseguirá acessá-la futuramente.
 
-![Caminho para criação de instância 5](/docs/assets/images/image18.png)
-![Caminho para criação de instância 6](/docs/assets/images/image19.png)
-
+---
+![Caminho para criação de instância 5](../../assets/images/image18.png)
+![Caminho para criação de instância 6](../../assets/images/image19.png)
+---
 
 Nas etapas de **Storage** e **Review** mantenha exatamente como estão e finalize o processo. Caso ocorra um erro como este abaixo, é necessário trocar o shape para outro com disponibilidade, como no caso do outro que usamos como exemplo. É importante que mantenha o número de OCPU's e memória.
 
-![Caminho para criação de instância 6](/docs/assets/images/image20.png)
-
+---
+![Caminho para criação de instância 6](../../assets/images/image20.png)
+---
 
 Finalizando essa configuração, sua máquina master estará pronta enfim. Agora é necessário executar exatamente o mesmo processo para as demais máquinas, os **nodes** de 01 à 03.
 
@@ -107,9 +107,9 @@ Finalizando essa configuração, sua máquina master estará pronta enfim. Agora
 Agora é necessário, antes de realizar o acesso via openSSH às máquinas, adicioná-las à NSG. Repita o caminho anterior até sua instância, e clique no nome da VM criada. Reproduza os passos das imagens abaixo.
 
 ---
-![Caminho para criação de instância 7](/docs/assets/images/image21.png)
-![Caminho para criação de instância 8](/docs/assets/images/image22.png)
-![Caminho para criação de instância 9](/docs/assets/images/image23.png)
+![Caminho para criação de instância 7](../../assets/images/image21.png)
+![Caminho para criação de instância 8](../../assets/images/image22.png)
+![Caminho para criação de instância 9](../../assets/images/image23.png)
 --
 
 Com essas ações concluídas, enfim será possível agora acessar via openSSH as máquinas criadas e dar início aos passos de configuração do ambiente do cluster Hadoop com ODP/Ambari.

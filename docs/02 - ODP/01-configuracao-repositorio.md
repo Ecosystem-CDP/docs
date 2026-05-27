@@ -1,8 +1,3 @@
----
-title: "01 -  Configuração do Repositório ODP e Instalação do Ambari/ODP"
-weight: 20
----
-
 # 01 -  Configuração do Repositório ODP e Instalação do Ambari/ODP
 
 Este documento detalha como configurar os repositórios oficiais da Clemlab para **Oracle Linux 9 ARM64** e instalar os componentes Ambari Server, Ambari Agent e ODP Stack.
@@ -147,7 +142,7 @@ Após estes passos, abra o Ambari Web em `http://<IP_PUBLICO_MASTER>:8080` e pro
 
 ## 8. Modo offline (opcional)
 
-Se estiver seguindo a instalação offline descrita em [Pré-requisitos](../00-pr%C3%A9requisitos/), após copiar os pacotes para `/opt/odp-repo/` em todos os nós, ajuste os arquivos `.repo` para apontarem para o caminho local usando `file:///`.
+Se estiver seguindo a instalação offline descrita em `00-prérequisitos.md`, após copiar os pacotes para `/opt/odp-repo/` em todos os nós, ajuste os arquivos `.repo` para apontarem para o caminho local usando `file:///`.
 
 Exemplo (ajuste os caminhos conforme a estrutura baixada):
 

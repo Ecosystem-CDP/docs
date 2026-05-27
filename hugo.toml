@@ -18,11 +18,11 @@ enableGitInfo = true
     disable = false
   [[module.mounts]]
     source = "docs"
-    target = "content"
-  # Publica assets em /docs/assets/*
+    target = "content/docs"
+  # Publicado em /docs/assets/ para que ../../assets/ nos .md funcione no browser
   [[module.mounts]]
     source = "assets"
-    target = "static/assets"
+    target = "static/docs/assets"
 
 [markup]
   defaultMarkdownHandler = "goldmark"
@@ -34,8 +34,6 @@ enableGitInfo = true
       unsafe = true
 
 [params]
-  description = "Documentação oficial do projeto Data Lake CDP na Oracle Cloud Infrastructure."
-  keywords = ["data lake", "oci", "cdp", "odp", "hadoop", "spark", "ambari"]
   google_fonts = [
     ["Inter", "300, 400, 600, 700"],
     ["Fira Code", "500, 700"]
@@ -59,7 +57,7 @@ enableGitInfo = true
     prismTheme = "lotusdocs"
     repoURL = "https://github.com/Ecosystem-CDP/docs"
     repoBranch = "main"
-    editPage = false
+    editPage = true
     lastMod = true
     lastModRelative = true
     sidebarIcons = true
@@ -75,12 +73,12 @@ enableGitInfo = true
     enabled = true
 
   [params.landing]
-    draftBanner = false
+    draftBanner = true
     draftBannerText = "Documentação não finalizada"
 
 [menu]
   [[menu.primary]]
     name = "Documentação"
-    url = "00---visão-geral/"
+    url = "docs/"
     identifier = "docs"
     weight = 10

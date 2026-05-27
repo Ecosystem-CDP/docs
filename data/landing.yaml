@@ -23,7 +23,7 @@ hero:
   ctaButton:
     icon: menu_book
     btnText: "Abrir documentação"
-    url: "/docs/00---visão-geral/"
+    url: "/docs/"
   cta2Button:
     icon: code
     btnText: "Repositório no GitHub"
@@ -45,28 +45,28 @@ featureGrid:
       description: Objetivo, escopo, glossário e contexto do projeto de pesquisa.
       ctaLink:
         text: Ler
-        url: /docs/00---visão-geral/00-projeto/
+        url: /docs/00%20-%20Visão%20Geral/00-projeto/
 
     - title: Deploy automatizado (CDP)
       icon: rocket_launch
       description: Terraform, Ansible, OCI Stacks e blueprint Ambari — método recomendado.
       ctaLink:
         text: Começar
-        url: /docs/03---cdp/01-resumo-executivo/
+        url: /docs/03%20-%20CDP/01-resumo-executivo/
 
     - title: Trilho manual (OCI + ODP)
       icon: school
       description: Provisionamento manual da infraestrutura e instalação do stack Ambari/ODP.
       ctaLink:
         text: Explorar
-        url: /docs/01---oci/00-prerequisitos/
+        url: /docs/01%20-%20OCI/00-prerequisitos/
 
     - title: Mermaid e diagramas
       icon: account_tree
       description: Arquitetura, fluxos de automação e topologia do cluster documentados visualmente.
       ctaLink:
         text: Ver arquitetura
-        url: /docs/03---cdp/04-arquitetura-fluxo/
+        url: /docs/03%20-%20CDP/04-arquitetura-fluxo/
 
 imageText:
   enable: false
