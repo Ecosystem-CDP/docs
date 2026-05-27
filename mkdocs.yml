@@ -1,0 +1,62 @@
+site_name: "Data Lake CDP — Documentação PIBIC"
+site_url: "https://ecosystem-cdp.github.io/docs/"
+repo_url: "https://github.com/Ecosystem-CDP/docs"
+repo_name: "Ecosystem-CDP/docs"
+
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+strict: true
+
+theme:
+  name: material
+  language: pt-BR
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+
+nav:
+  - Home: "00 - Visão Geral/00-projeto.md"
+  - Visão Geral:
+      - Projeto: "00 - Visão Geral/00-projeto.md"
+      - Glossário: "00 - Visão Geral/01-glossario.md"
+  - OCI:
+      - Pré-requisitos: "01 - OCI/00-prerequisitos.md"
+      - Controle de Acesso: "01 - OCI/01-controle-de-acesso.md"
+      - Rede e Segurança: "01 - OCI/02-rede-e-seguranca.md"
+      - Provisionamento Compute: "01 - OCI/03-provisionamento-compute.md"
+      - Provisionamento Compute Free Tier: "01 - OCI/03.1-provisionamento-compute-free-tier.md"
+      - Acesso SSH: "01 - OCI/04-acesso-ssh.md"
+      - Armazenamento: "01 - OCI/05-armazenamento.md"
+      - Problemas Conhecidos: "01 - OCI/XX-problemas-conhecidos.md"
+  - ODP:
+      - Pré-requisitos: "02 - ODP/00-prérequisitos.md"
+      - Configuração do Repositório: "02 - ODP/01-configuracao-repositorio.md"
+      - Instalação Ambari: "02 - ODP/02-instalacao-ambari.md"
+      - Componentes: "02 - ODP/03.0-configuracao-servicos-componentes.md"
+      - Configuração Serviços: "02 - ODP/03.1-configuracao-servicos.md"
+      - Pós-instalação: "02 - ODP/04-instalacao-interface.md"
+      - Problemas Conhecidos: "02 - ODP/XX-problemas-conhecidos.md"
+  - CDP:
+      - Resumo Executivo: "03 - CDP/01-resumo-executivo.md"
+      - Guia Técnico: "03 - CDP/02-guia-tecnico-automacao.md"
+      - Manual de Debug: "03 - CDP/03-manual-debug.md"
+      - Arquitetura e Fluxo: "03 - CDP/04-arquitetura-fluxo.md"
+      - Senhas e Credenciais: "03 - CDP/05-senhas-credenciais.md"
+      - Scripts de Referência: "03 - CDP/06-scripts-referencia.md"
+      - Deploy via OCI Stacks: "03 - CDP/07-guia-deploy-oci-stacks.md"
+      - Mudança de IP: "03 - CDP/08-mudanca-ip-passo-a-passo.md"
+      - Infrastructure Profiles: "03 - CDP/09-profiles_documentation.md"

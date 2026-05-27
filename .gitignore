@@ -5,6 +5,11 @@
 !README.md
 !assets/
 !docs/
+!mkdocs.yml
+!requirements.txt
+!.github/
+!.github/workflows/
+!.github/workflows/deploy-docs.yml
 
 # Permitir este próprio arquivo
 !.gitignore
