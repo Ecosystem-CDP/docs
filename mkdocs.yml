@@ -29,7 +29,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
 
 nav:
-  - Home: "00 - Visão Geral/00-projeto.md"
+  - Home: "index.md"
   - Visão Geral:
       - Projeto: "00 - Visão Geral/00-projeto.md"
       - Glossário: "00 - Visão Geral/01-glossario.md"
