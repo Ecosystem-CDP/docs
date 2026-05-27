@@ -72,10 +72,6 @@ enableGitInfo = true
   [params.flexsearch]
     enabled = true
 
-  [params.landing]
-    draftBanner = true
-    draftBannerText = "Documentação não finalizada"
-
 [menu]
   [[menu.primary]]
     name = "Documentação"

@@ -1,8 +1,0 @@
-{{ if site.Params.landing.draftBanner | default true }}
-<link rel="stylesheet" href="{{ "css/draft-banner.css" | relURL }}">
-<div class="draft-banner-overlay" role="status" aria-live="polite">
-  <p class="draft-banner-text">
-    {{ site.Params.landing.draftBannerText | default "Documentação não finalizada" }}
-  </p>
-</div>
-{{ end }}
