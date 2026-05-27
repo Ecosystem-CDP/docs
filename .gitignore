@@ -1,11 +1,10 @@
-# Ignorar tudo no diretório raiz
-/*
+# Hugo build output
+/public/
+/resources/
+.hugo_build.lock
 
-# Permitir apenas estes itens no repositório
-!README.md
-!assets/
-!docs/
+# Local theme reference (build uses Hugo module)
+lotusdocs-release/
 
-# Permitir este próprio arquivo
-!.gitignore
+# Legacy
 /docs/XX - Docs PIBIC/
