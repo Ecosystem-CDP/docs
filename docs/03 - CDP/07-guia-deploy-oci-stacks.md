@@ -27,7 +27,7 @@ Acesse [infra-terraform-main](https://github.com/Ecosystem-CDP/infra-terraform-m
     *   **Name**: Dê um nome, ex: `CDP-Data-Lake`.
     *   Clique em **Next**.
 
-![Stack Information](../../assets/images/image-stack-01.png)
+![Stack Information](../assets/images/image-stack-01.png)
 
 ### 3. Configurar Variáveis
 Graças ao arquivo `schema.yaml` incluído no projeto, o OCI irá gerar um formulário customizado. Preencha os campos:
@@ -43,12 +43,12 @@ Graças ao arquivo `schema.yaml` incluído no projeto, o OCI irá gerar um formu
 
 Clique em **Next**.
 
-![Stack Information](../../assets/images/image-stack-02.png)
-![Stack Information](../../assets/images/image-stack-03.png)
-![Stack Information](../../assets/images/image-stack-04.png)
-![Stack Information](../../assets/images/image-stack-05.png)
-![Stack Information](../../assets/images/image-stack-06.png)
-![Stack Information](../../assets/images/image-stack-07.png)
+![Stack Information](../assets/images/image-stack-02.png)
+![Stack Information](../assets/images/image-stack-03.png)
+![Stack Information](../assets/images/image-stack-04.png)
+![Stack Information](../assets/images/image-stack-05.png)
+![Stack Information](../assets/images/image-stack-06.png)
+![Stack Information](../assets/images/image-stack-07.png)
 
 ### 4. Review e Deploy
 1.  Revise as configurações na tela final.
@@ -66,7 +66,7 @@ Após criar a Stack, você será redirecionado para a página de **Job Details**
 3.  O processo levará cerca de **25 a 45 minutos** (pois inclui a instalação do Ambari e provisionamento do cluster Hadoop).
 4.  Ao final, se tudo der certo, o status do Job ficará verde (**Succeeded**).
 
-![Stack Information](../../assets/images/image-stack-08.png)
+![Stack Information](../assets/images/image-stack-08.png)
 
 ##  Destruindo o Ambiente
 Para apagar tudo e parar a cobrança:

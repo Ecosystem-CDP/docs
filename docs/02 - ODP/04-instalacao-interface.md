@@ -20,7 +20,7 @@ Convenções usadas:
 Vale ainda ressaltar, que para cada componente instalado, consulte a imagem abaixo sobre quais 
 instalações devem ir para cada host.
 
-![`padroes-de-instalacao`](../../assets/images/change5.png)
+![`padroes-de-instalacao`](../assets/images/change5.png)
 
 ------------------------------------------------------------
 ## Correções iniciais (ajuste do YARN ATS no HDFS)
