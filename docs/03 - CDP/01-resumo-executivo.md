@@ -1,3 +1,8 @@
+---
+title: "01 - Resumo Executivo: Automação de Cluster Ambari (ODP)"
+weight: 10
+---
+
 # 01 - Resumo Executivo: Automação de Cluster Ambari (ODP)
 
 ##  Objetivo do Projeto
@@ -57,9 +62,9 @@ Para subir o ambiente completo do zero:
 ##  Estrutura de Documentação
 Esta pasta contém a documentação atualizada do projeto, organizada sequencialmente:
 
-*   **01-resumo-executivo.md**: Visão geral (este arquivo).
-*   **02-guia-tecnico-automacao.md**: Detalhes técnicos da automação.
-*   **03-manual-debug.md**: Instruções para intervenção manual e troubleshooting.
-*   **04-arquitetura-fluxo.md**: Diagramas visuais do fluxo de dados e provisionamento.
-*   **05-senhas-credenciais.md**: Referência de credenciais padrão.
-*   **06-scripts-referencia.md**: Códigos e scripts utilizados no processo.
+* [Resumo executivo](../01-resumo-executivo/): visão geral (este documento).
+* [Guia técnico de automação](../02-guia-tecnico-automacao/): detalhes técnicos da automação.
+* [Manual de debug](../03-manual-debug/): instruções para intervenção manual e troubleshooting.
+* [Arquitetura e fluxo de automação](../04-arquitetura-fluxo/): diagramas visuais do fluxo de dados e provisionamento.
+* [Credenciais e senhas](../05-senhas-credenciais/): referência de credenciais padrão.
+* [Scripts de referência](../06-scripts-referencia/): códigos e scripts utilizados no processo.

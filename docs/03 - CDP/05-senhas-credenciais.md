@@ -1,3 +1,8 @@
+---
+title: "05 - Credenciais e Senhas"
+weight: 50
+---
+
 # 05 - Credenciais e Senhas
 
 Este documento registra as credenciais padrão configuradas nos scripts de automação.

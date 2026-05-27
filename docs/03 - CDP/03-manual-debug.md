@@ -1,3 +1,8 @@
+---
+title: "03 - Manual de Debug e Intervenção"
+weight: 30
+---
+
 # 03 - Manual de Debug e Intervenção
 
 Este documento serve como referência para quando a automação falhar ou quando for necessária uma intervenção manual no cluster.

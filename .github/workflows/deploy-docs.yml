@@ -41,6 +41,9 @@ jobs:
       - name: Build site
         run: hugo --gc --minify
 
+      - name: Validate generated documentation links
+        run: python3 scripts/validate_public_build.py --public-dir public --site-prefix /docs/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -1,3 +1,8 @@
+---
+title: "04 - Arquitetura e Fluxo de Automação"
+weight: 40
+---
+
 # 04 - Arquitetura e Fluxo de Automação
 
 ##  Fluxo de Provisionamento (End-to-End)

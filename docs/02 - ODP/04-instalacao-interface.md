@@ -1,3 +1,8 @@
+---
+title: "04 - Pós-instalação: Instalação e Configuração dos Serviços (um a um)"
+weight: 60
+---
+
 # 04 - Pós-instalação: Instalação e Configuração dos Serviços (um a um)
 
 Este documento orienta a instalação dos serviços restantes do cluster via Ambari, após a base já provisionada no documento 03 (ZooKeeper, HDFS, YARN + MapReduce2 e Tez). O foco é executar os procedimentos pela interface do Ambari; use linha de comando apenas quando explicitamente indicado.
@@ -7,20 +12,20 @@ Importante sobre senhas:
 - As senhas devem obedecer às políticas de complexidade do Ranger. Recomendação: mínimo 10–12 caracteres, com letras maiúsculas/minúsculas, dígitos e caracteres especiais; evitar dados pessoais; não reutilizar senhas.
 
 Pré-requisitos validados:
-- Ambari acessível e agentes ativos (docs/02 - ODP/02-instalacao-ambari.md).
-- Setup inicial concluído conforme docs/02 - ODP/03-configuracao-servicos.md.
-- Ordem recomendada de instalação (docs/02 - ODP/03.1-configuracao-servicos.md):
+- Ambari acessível e agentes ativos ([Instalação e configuração básica do Ambari](../02-instalacao-ambari/)).
+- Setup inicial concluído conforme [Configuração do Ambari pela interface](../03.1-configuracao-servicos/).
+- Ordem recomendada de instalação ([Configuração do Ambari pela interface](../03.1-configuracao-servicos/)):
   1) Ambari Infra Solr → 2) Ranger → 3) Hive (com Tez) → 4) Kafka → 5) HBase (+ Phoenix Query Server) → 6) NiFi → 7) Spark3 (JobHistory, Livy2, ThriftServer).
 
 Convenções usadas:
 - Hostnames de exemplo: master.cdp, node1.cdp, node2.cdp, node3.cdp (ajuste para seu FQDN, ex.: master.cdp.dev.br).
 - Stack/versões conforme ODP-VDF 1.2.2.0-128.
-- SELinux em modo permissivo durante a instalação (veja 00-prérequisitos.md). Abra as portas necessárias no firewalld conforme indicado por cada serviço.
+- SELinux em modo permissivo durante a instalação (veja [Pré-requisitos](../00-pr%C3%A9requisitos/)). Abra as portas necessárias no firewalld conforme indicado por cada serviço.
 
 Vale ainda ressaltar, que para cada componente instalado, consulte a imagem abaixo sobre quais 
 instalações devem ir para cada host.
 
-![`padroes-de-instalacao`](../../assets/images/change5.png)
+![`padroes-de-instalacao`](/docs/assets/images/change5.png)
 
 ------------------------------------------------------------
 ## Correções iniciais (ajuste do YARN ATS no HDFS)

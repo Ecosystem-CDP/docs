@@ -1,3 +1,8 @@
+---
+title: "02 -  Instalação e Configuração Básica do Ambari"
+weight: 30
+---
+
 # 02 -  Instalação e Configuração Básica do Ambari
 
 Esta etapa cobre a instalação e configuração inicial do Ambari Server e Ambari Agent em **Oracle Linux 9 ARM64**, preparando o ambiente para provisionar serviços Hadoop/Spark via interface web.
@@ -6,7 +11,7 @@ Esta etapa cobre a instalação e configuração inicial do Ambari Server e Amba
 
 ## 1. Verificação pré-instalação
 
-Antes de continuar, confirme que os pacotes já foram instalados conforme o documento `01-configuracao-repositorio.md`.
+Antes de continuar, confirme que os pacotes já foram instalados conforme o documento [Configuração do repositório](../01-configuracao-repositorio/).
 
 Para validar rapidamente:
 
@@ -98,4 +103,4 @@ http://<IP_PUBLICO_MASTER>:8080
 - Ambari Agent instalado e ativo em todos os nós
 - Interface Web acessível em porta 8080
 
-Após validar, avance para o documento `03-configuracao-servicos.md` para iniciar o assistente de configuração dos serviços do cluster.
+Após validar, avance para [Configuração dos serviços no Ambari](../03.1-configuracao-servicos/) para iniciar o assistente de configuração dos serviços do cluster.

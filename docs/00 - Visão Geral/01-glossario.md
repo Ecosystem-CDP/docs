@@ -1,3 +1,8 @@
+---
+title: "01 • Glossário de Termos e Siglas"
+weight: 20
+---
+
 # 01 • Glossário de Termos e Siglas
 
 Este glossário reúne definições dos principais termos, siglas e tecnologias citados ao longo da documentação do projeto.

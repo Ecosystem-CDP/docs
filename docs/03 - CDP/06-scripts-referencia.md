@@ -1,3 +1,8 @@
+---
+title: "06 - Scripts de Referência"
+weight: 60
+---
+
 # 06 - Scripts de Referência
 
 Coleção de scripts "one-liners" e utilitários para operação diária do cluster.

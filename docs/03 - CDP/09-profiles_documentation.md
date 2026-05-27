@@ -1,3 +1,8 @@
+---
+title: "CDP Infrastructure Profiles"
+weight: 90
+---
+
 # CDP Infrastructure Profiles
 
 This document details the component distribution for each available infrastructure profile.

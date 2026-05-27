@@ -1,3 +1,8 @@
+---
+title: "05 – Armazenamento na Oracle Cloud Infrastructure (OCI)"
+weight: 70
+---
+
 # 05 – Armazenamento na Oracle Cloud Infrastructure (OCI)
 
 Este documento detalha o planejamento, a provisão e as melhores práticas para o armazenamento de dados em ambientes de Data Lake open source na Oracle Cloud Infrastructure (OCI), com foco em Hadoop (HDFS), Hive e componentes do ecossistema Apache.

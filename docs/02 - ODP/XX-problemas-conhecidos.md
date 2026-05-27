@@ -1,3 +1,8 @@
+---
+title: "XX • problemas-conhecidos"
+weight: 70
+---
+
 # XX • problemas-conhecidos
 
 ### 1. Inserção manual da chave pública SSH

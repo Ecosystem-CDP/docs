@@ -1,3 +1,8 @@
+---
+title: "Problemas Conhecidos e Troubleshooting Avançado (OCI)"
+weight: 80
+---
+
 # Problemas Conhecidos e Troubleshooting Avançado (OCI)
 
 Este documento centraliza problemas técnicos complexos que podem afetar o acesso e a operação da infraestrutura na Oracle Cloud Infrastructure, detalhando sintomas, diagnósticos e soluções.
