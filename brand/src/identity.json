@@ -1,0 +1,52 @@
+{
+  "brand": {
+    "name": "Data Lake CDP",
+    "tagline": "Documentacao PIBIC - ODP/Ambari na Oracle Cloud Infrastructure",
+    "voice": {
+      "tone": ["tecnico", "direto", "reproduzivel"],
+      "locale": "pt-BR",
+      "writingStyle": [
+        "passos numerados",
+        "tabelas quando cabem",
+        "placeholders para valores sensiveis"
+      ]
+    }
+  },
+  "palette": {
+    "intent": "cefet-mg-beamer-contrast",
+    "source": "beamerthemecefetmg.sty",
+    "forbidden": ["dasein-ink-paper", "purple-indigo-gradient", "neon-cyber", "blue-grey-tcc-docs"]
+  },
+  "fonts": {
+    "roles": {
+      "display": {
+        "family": "DM Sans",
+        "path": "brand/fonts/dm-sans/"
+      },
+      "sans": {
+        "family": "DM Sans",
+        "path": "brand/fonts/dm-sans/"
+      },
+      "mono": {
+        "family": "JetBrains Mono",
+        "path": "brand/fonts/jetbrains-mono/"
+      }
+    },
+    "delivery": {
+      "cdn": false,
+      "selfHostRoot": "brand/fonts/",
+      "fontsCss": "brand/src/fonts.css",
+      "fontDisplay": "swap"
+    }
+  },
+  "icons": {
+    "uiLibrary": "lucide",
+    "emojiInChrome": false
+  },
+  "mark": {
+    "favicon": "brand/src/favicon.svg",
+    "publish": {
+      "favicon": "docs/images/favicon.svg"
+    }
+  }
+}

@@ -1,0 +1,209 @@
+/* Mapeia brand tokens para variaveis do tema Zensical/Material.
+   tokens.css e concatenado antes deste arquivo por prepare-docs.sh. */
+
+:root,
+[data-md-color-scheme="default"] {
+  --md-default-fg-color: var(--dc-color-ink);
+  --md-default-fg-color--light: var(--dc-color-muted);
+  --md-default-bg-color: var(--dc-color-paper);
+  --md-primary-fg-color: var(--dc-color-accent);
+  --md-primary-fg-color--light: var(--dc-color-accent-soft);
+  --md-primary-fg-color--dark: var(--dc-color-header);
+  --md-primary-bg-color: var(--dc-color-header-fg);
+  --md-accent-fg-color: var(--dc-color-accent-soft);
+  --md-code-bg-color: var(--dc-color-code);
+  --md-typeset-a-color: var(--dc-color-accent);
+  --md-text-font: var(--dc-font-sans);
+  --md-code-font: var(--dc-font-mono);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-fg-color: var(--dc-color-ink);
+  --md-default-fg-color--light: var(--dc-color-muted);
+  --md-default-bg-color: var(--dc-color-paper);
+  --md-primary-fg-color: var(--dc-color-accent);
+  --md-primary-fg-color--light: var(--dc-color-accent-soft);
+  --md-primary-fg-color--dark: var(--dc-color-header);
+  --md-primary-bg-color: var(--dc-color-header-fg);
+  --md-accent-fg-color: var(--dc-color-accent-soft);
+  --md-code-bg-color: var(--dc-color-code);
+  --md-typeset-a-color: var(--dc-color-accent);
+  --md-text-font: var(--dc-font-sans);
+  --md-code-font: var(--dc-font-mono);
+  --md-hue: 214;
+}
+
+.md-header {
+  background-color: var(--dc-color-header);
+  color: var(--dc-color-header-fg);
+  border-bottom: 1px solid var(--dc-color-header-border);
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.md-header .md-header__title,
+.md-header .md-header__button,
+.md-header .md-tabs,
+.md-header .md-tabs__link {
+  color: var(--dc-color-header-fg);
+}
+
+.md-header .md-header__button:hover,
+.md-header .md-tabs__link:hover,
+.md-header .md-tabs__link--active {
+  color: var(--dc-color-header-fg);
+  opacity: 0.92;
+}
+
+.md-header .md-header__button:focus-visible {
+  outline: 2px solid var(--dc-color-accent-soft);
+  outline-offset: 2px;
+}
+
+.md-header .md-search__button,
+.md-search__button {
+  background-color: color-mix(in srgb, var(--dc-color-header-fg) 18%, transparent) !important;
+  color: var(--dc-color-header-fg) !important;
+}
+
+.md-header .md-search__button::before,
+.md-search__button::before {
+  background-color: var(--dc-color-header-fg) !important;
+}
+
+.md-header .md-search__button::after,
+.md-search__button::after {
+  background-color: color-mix(in srgb, var(--dc-color-header-fg) 22%, transparent) !important;
+  color: var(--dc-color-header-fg) !important;
+}
+
+.md-header .md-search__button:hover,
+.md-header .md-search__button:focus,
+.md-search__button:hover,
+.md-search__button:focus {
+  background-color: color-mix(in srgb, var(--dc-color-header-fg) 28%, transparent) !important;
+  color: var(--dc-color-header-fg) !important;
+}
+
+.md-header .md-search__button:hover::before,
+.md-header .md-search__button:focus::before,
+.md-search__button:hover::before,
+.md-search__button:focus::before {
+  background-color: var(--dc-color-header-fg) !important;
+}
+
+.md-header .md-search__button:focus-visible,
+.md-search__button:focus-visible {
+  outline: 2px solid var(--dc-color-accent-soft);
+  outline-offset: 2px;
+}
+
+.md-header .md-header__button.md-icon svg,
+.md-header label.md-header__button svg {
+  color: var(--dc-color-header-fg);
+  stroke: currentColor;
+}
+
+.md-progress {
+  background-color: var(--dc-color-header);
+}
+
+.md-progress__inner,
+.md-progress > * {
+  background-color: var(--dc-color-accent-soft);
+}
+
+.md-nav--primary .md-nav__item--active > .md-nav__link,
+.md-nav--primary .md-nav__link--active {
+  color: var(--dc-color-accent);
+  font-weight: 600;
+  background-color: color-mix(in srgb, var(--dc-color-accent) 14%, transparent);
+  border-radius: var(--dc-radius-md);
+  border-left: none;
+  margin-left: 0;
+  padding-left: 0.6rem;
+}
+
+.md-nav--primary .md-nav__item--active > .md-nav__link .md-icon,
+.md-nav--primary .md-nav__link--active .md-icon,
+.md-nav--primary .md-nav__item--active > .md-nav__link svg,
+.md-nav--primary .md-nav__link--active svg {
+  color: var(--dc-color-accent);
+  fill: currentColor;
+}
+
+.md-nav__link:focus-visible,
+.md-typeset a:focus-visible,
+.md-button:focus-visible {
+  outline: 2px solid var(--dc-color-accent);
+  outline-offset: 2px;
+}
+
+.md-nav--secondary .md-nav__title,
+.md-sidebar--secondary .md-nav__title {
+  color: var(--dc-color-ink);
+  font-weight: 700;
+}
+
+.md-nav--secondary .md-nav__link--active {
+  color: var(--dc-color-accent);
+  font-weight: 600;
+}
+
+body {
+  font-family: var(--dc-font-sans);
+}
+
+.md-typeset h1,
+.font-display {
+  font-family: var(--dc-font-display);
+}
+
+code,
+pre,
+.md-typeset code {
+  font-family: var(--dc-font-mono);
+}
+
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-color: var(--dc-color-accent);
+}
+
+.md-typeset .admonition.note > .admonition-title,
+.md-typeset details.note > summary {
+  background-color: var(--dc-color-info-bg);
+}
+
+.md-typeset .admonition.tip,
+.md-typeset details.tip,
+.md-typeset .admonition.success,
+.md-typeset details.success {
+  border-color: var(--dc-color-success);
+}
+
+.md-typeset .admonition.tip > .admonition-title,
+.md-typeset details.tip > summary,
+.md-typeset .admonition.success > .admonition-title,
+.md-typeset details.success > summary {
+  background-color: var(--dc-color-success-bg);
+}
+
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  border-color: var(--dc-color-warning);
+}
+
+.md-typeset .admonition.danger,
+.md-typeset details.danger {
+  border-color: var(--dc-color-danger);
+}
+
+.md-typeset .admonition.danger > .admonition-title,
+.md-typeset details.danger > summary {
+  background-color: var(--dc-color-danger-bg);
+}

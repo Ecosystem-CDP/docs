@@ -1,0 +1,57 @@
+/* SSOT visual CDP. Cores da paleta Beamer CEFET-MG (beamerthemecefetmg.sty). */
+:root {
+  --dc-color-ink: #2c3e50;
+  --dc-color-muted: #95a5a6;
+  --dc-color-paper: #fafbfc;
+  --dc-color-surface: #ffffff;
+  --dc-color-border: #dde1e5;
+  --dc-color-accent: #0567fa;
+  --dc-color-accent-soft: color-mix(in srgb, #0567fa 45%, #fafbfc);
+  --dc-color-code: #f0f3f5;
+
+  --dc-color-header: #1a2744;
+  --dc-color-header-fg: #fafbfc;
+  --dc-color-header-border: color-mix(in srgb, #0567fa 25%, transparent);
+
+  --dc-color-success: #27ae60;
+  --dc-color-success-bg: #eafaf1;
+  --dc-color-warning: #f2994a;
+  --dc-color-danger: #eb5757;
+  --dc-color-danger-bg: #fdedec;
+  --dc-color-info-bg: #ebf5fb;
+
+  --dc-font-display: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --dc-font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --dc-font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --dc-radius-sm: 0.375rem;
+  --dc-radius-md: 0.5rem;
+  --dc-radius-lg: 0.75rem;
+
+  --dc-motion-fast: 150ms;
+  --dc-motion-base: 220ms;
+  --dc-space-lp: 72rem;
+}
+
+[data-md-color-scheme="slate"],
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --dc-color-ink: #eceff1;
+  --dc-color-muted: #95a5a6;
+  --dc-color-paper: #0f1b30;
+  --dc-color-surface: #1a2744;
+  --dc-color-border: color-mix(in srgb, #0567fa 28%, transparent);
+  --dc-color-accent: #0567fa;
+  --dc-color-accent-soft: color-mix(in srgb, #0567fa 55%, #0f1b30);
+  --dc-color-code: #1a2744;
+
+  --dc-color-header: #0f1b30;
+  --dc-color-header-fg: #fafbfc;
+  --dc-color-header-border: color-mix(in srgb, #0567fa 35%, transparent);
+
+  --dc-color-success-bg: color-mix(in srgb, #27ae60 18%, #0f1b30);
+  --dc-color-danger-bg: color-mix(in srgb, #eb5757 18%, #0f1b30);
+  --dc-color-info-bg: color-mix(in srgb, #0567fa 18%, #0f1b30);
+}

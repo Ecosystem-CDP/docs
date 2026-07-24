@@ -1,0 +1,9 @@
+# Brand Cdp-Docs (LLMs)
+
+SSOT visual em brand/.
+Padrao de chrome: theme-bridge do template Zensical (documentation/).
+Cores: paleta Beamer CEFET-MG (cefetPrimary #1A2744, cefetAccent #0567FA, cefetBg #FAFBFC).
+Prefixo CSS: --dc-* (compatibilidade com bridge do template).
+Fontes: DM Sans + JetBrains Mono self-host em brand/fonts/. CDN proibido.
+Nao inventar segunda paleta. Nao usar emoji no chrome.
+Ler GUIDELINES.md e identity.json antes de alterar tokens.
