@@ -5,7 +5,9 @@ Este repositório contém a documentação e os scripts para a criação de um c
 
 > Atenção: todos os valores sensíveis (OCIDs, endereços IP, nomes de VCN, senhas) estão representados por **placeholders**. Substitua-os antes de executar qualquer comando.
 
-**Site publico:** [https://ecosystem-cdp.github.io/docs/](https://ecosystem-cdp.github.io/docs/) (build Zensical a partir de `docs/`, via GitHub Actions). Este README nao e a homepage do site. Em Settings → Pages, a Source deve ser **GitHub Actions**, nao Deploy from a branch.
+**Site publico:** [https://ecosystem-cdp.github.io/](https://ecosystem-cdp.github.io/) (build Zensical a partir de `docs/`, publicado no repo `ecosystem-cdp.github.io`). Este README nao e a homepage do site.
+
+Deploy: o workflow `.github/workflows/deploy-docs.yml` exige o secret `PAGES_DEPLOY_TOKEN` (PAT com `contents: write` em `Ecosystem-CDP/ecosystem-cdp.github.io`). Em `ecosystem-cdp.github.io` → Settings → Pages, Source = **Deploy from a branch** (`main`).
 
 ## Build da documentacao (Zensical)
 

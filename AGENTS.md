@@ -34,12 +34,14 @@ Site em `public/` (`site_dir` em `mkdocs.yml`). Nunca gerar o site em `docs/asse
 
 ## GitHub Pages
 
-O site publico e [https://ecosystem-cdp.github.io/docs/](https://ecosystem-cdp.github.io/docs/).
+O site publico e [https://ecosystem-cdp.github.io/](https://ecosystem-cdp.github.io/) (raiz da org).
+O codigo-fonte fica em `Ecosystem-CDP/docs`. O HTML publicado vai para `Ecosystem-CDP/ecosystem-cdp.github.io`.
 
-1. Em `Ecosystem-CDP/docs` → Settings → Pages → Build and deployment → Source = **GitHub Actions**.
-2. Nao usar Deploy from a branch (isso publica o README e sobrescreve o Zensical).
-3. O workflow `.github/workflows/deploy-docs.yml` faz prepare, gates, `zensical build --strict --clean`, `.nojekyll` e deploy do artifact `public/`.
+1. Secret `PAGES_DEPLOY_TOKEN` no repo `docs` (PAT com `contents: write` em `ecosystem-cdp.github.io`).
+2. Em `ecosystem-cdp.github.io` → Settings → Pages → Source = **Deploy from a branch** (`main`).
+3. O workflow `.github/workflows/deploy-docs.yml` faz prepare, gates, `zensical build --strict --clean`, `.nojekyll` e push de `public/` para `ecosystem-cdp.github.io` (`main`).
 4. O `README.md` e so para o repositorio GitHub. A homepage do site vem de `docs/index.md`.
+5. `/docs/` (Pages do repo `docs`) nao e o destino canonico. Pode ser desligado depois.
 
 ## Brand
 

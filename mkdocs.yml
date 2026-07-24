@@ -1,6 +1,6 @@
 site_name: "Data Lake CDP - Documentacao PIBIC"
 site_description: "Data Lake open source com ODP/Ambari na Oracle Cloud Infrastructure"
-site_url: "https://ecosystem-cdp.github.io/docs/"
+site_url: "https://ecosystem-cdp.github.io/"
 repo_url: "https://github.com/Ecosystem-CDP/docs"
 repo_name: "Ecosystem-CDP/docs"
 
