@@ -11,11 +11,8 @@ sync_tree() {
   local dest="$2"
   rm -rf "$dest"
   mkdir -p "$dest"
-  if command -v rsync &>/dev/null; then
-    rsync -a --delete "$src/" "$dest/"
-  else
-    cp -a "$src/." "$dest/"
-  fi
+  # Preferir cp: evita deadlock de rsync --delete sob concorrencia local.
+  cp -a "$src/." "$dest/"
 }
 
 if [[ ! -d "$ROOT/assets" ]]; then

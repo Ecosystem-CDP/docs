@@ -22,9 +22,10 @@
 # Este arquivo
 !.gitignore
 
-# Saida do Zensical
+# Saida de build e ambientes locais
 /public/
 /site/
+/resources/
 .cache/
 .venv/
 venv/

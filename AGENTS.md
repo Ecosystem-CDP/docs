@@ -32,6 +32,15 @@ zensical build --strict --clean
 
 Site em `public/` (`site_dir` em `mkdocs.yml`). Nunca gerar o site em `docs/assets`.
 
+## GitHub Pages
+
+O site publico e [https://ecosystem-cdp.github.io/docs/](https://ecosystem-cdp.github.io/docs/).
+
+1. Em `Ecosystem-CDP/docs` → Settings → Pages → Build and deployment → Source = **GitHub Actions**.
+2. Nao usar Deploy from a branch (isso publica o README e sobrescreve o Zensical).
+3. O workflow `.github/workflows/deploy-docs.yml` faz prepare, gates, `zensical build --strict --clean`, `.nojekyll` e deploy do artifact `public/`.
+4. O `README.md` e so para o repositorio GitHub. A homepage do site vem de `docs/index.md`.
+
 ## Brand
 
 Ordem: `brand/llms.txt` depois `brand/GUIDELINES.md` depois `brand/src/`.
