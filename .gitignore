@@ -1,16 +1,41 @@
-# Ignorar tudo no diretório raiz
+# Ignorar tudo no diretorio raiz
 /*
 
-# Permitir apenas estes itens no repositório
+# Permitir itens do repositorio
 !README.md
+!AGENTS.md
 !assets/
+!assets/**
 !docs/
+!docs/**
+!brand/
+!brand/**
+!scripts/
+!scripts/**
 !mkdocs.yml
 !requirements.txt
 !.github/
-!.github/workflows/
-!.github/workflows/deploy-docs.yml
+!.github/**
+!.cursor/
+!.cursor/**
 
-# Permitir este próprio arquivo
+# Este arquivo
 !.gitignore
+
+# Saida do Zensical
+/public/
+/site/
+.cache/
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Gerados por prepare-docs.sh
+/docs/assets/
+/docs/stylesheets/brand-bridge.css
+/docs/stylesheets/brand-fonts.css
+/docs/images/favicon.svg
+
+# Legado
 /docs/XX - Docs PIBIC/
