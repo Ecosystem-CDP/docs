@@ -1,62 +1,165 @@
-site_name: "Data Lake CDP — Documentação PIBIC"
+site_name: "Data Lake CDP - Documentacao PIBIC"
+site_description: "Data Lake open source com ODP/Ambari na Oracle Cloud Infrastructure"
 site_url: "https://ecosystem-cdp.github.io/docs/"
 repo_url: "https://github.com/Ecosystem-CDP/docs"
 repo_name: "Ecosystem-CDP/docs"
 
 docs_dir: docs
-site_dir: site
+site_dir: public
 use_directory_urls: true
 strict: true
+
+copyright: "Data Lake CDP - Documentacao PIBIC"
+
+extra:
+  nav_title: Home
+  status:
+    new: Adicionado recentemente
+    deprecated: Obsoleto
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Ecosystem-CDP/docs
+      name: Repositorio no GitHub
+  tags:
+    Onboarding: onboarding
+    Visao Geral: visao-geral
+    OCI: oci
+    ODP: odp
+    CDP: cdp
+    Automacao: automacao
+    Debug: debug
+    Credenciais: credenciais
+    Artefatos: artefatos
+    Infra: infra
+    Documentacao: documentacao
+    Zensical: zensical
+
+extra_css:
+  - stylesheets/brand-fonts.css
+  - stylesheets/brand-bridge.css
 
 theme:
   name: material
   language: pt-BR
+  favicon: images/favicon.svg
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: lucide/sun
+        name: Modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: lucide/moon
+        name: Modo claro
+  icon:
+    repo: fontawesome/brands/github
+    admonition:
+      note: lucide/sticky-note
+      tip: lucide/lightbulb
+      info: lucide/info
+    tag:
+      default: lucide/hash
+      onboarding: material/compass-outline
+      visao-geral: lucide/book-open
+      oci: material/cloud-outline
+      odp: material/database-outline
+      cdp: material/sitemap
+      automacao: material/cog-outline
+      debug: lucide/bug
+      credenciais: lucide/key-round
+      artefatos: material/file-document-outline
+      infra: material/server
+      documentacao: material/book-outline
+      zensical: material/book-open-page-variant
   features:
     - navigation.sections
     - navigation.top
+    - navigation.path
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
     - content.code.copy
+    - content.code.select
 
 plugins:
   - search
+  - tags
+  - redirects:
+      redirect_maps: {}
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      width: 95vw
+      height: auto
+      zoomable: true
+      auto_themed: true
 
 markdown_extensions:
+  - meta
+  - abbr
+  - footnotes
   - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
   - tables
   - toc:
       permalink: true
-  - pymdownx.superfences
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
 
 nav:
   - Home: "index.md"
-  - Visão Geral:
+  - Visao Geral:
       - Projeto: "00 - Visão Geral/00-projeto.md"
-      - Glossário: "00 - Visão Geral/01-glossario.md"
+      - Glossario: "00 - Visão Geral/01-glossario.md"
   - OCI:
-      - Pré-requisitos: "01 - OCI/00-prerequisitos.md"
+      - Pre-requisitos: "01 - OCI/00-prerequisitos.md"
       - Controle de Acesso: "01 - OCI/01-controle-de-acesso.md"
-      - Rede e Segurança: "01 - OCI/02-rede-e-seguranca.md"
+      - Rede e Seguranca: "01 - OCI/02-rede-e-seguranca.md"
       - Provisionamento Compute: "01 - OCI/03-provisionamento-compute.md"
       - Provisionamento Compute Free Tier: "01 - OCI/03.1-provisionamento-compute-free-tier.md"
       - Acesso SSH: "01 - OCI/04-acesso-ssh.md"
       - Armazenamento: "01 - OCI/05-armazenamento.md"
       - Problemas Conhecidos: "01 - OCI/XX-problemas-conhecidos.md"
   - ODP:
-      - Pré-requisitos: "02 - ODP/00-prérequisitos.md"
-      - Configuração do Repositório: "02 - ODP/01-configuracao-repositorio.md"
-      - Instalação Ambari: "02 - ODP/02-instalacao-ambari.md"
+      - Pre-requisitos: "02 - ODP/00-prérequisitos.md"
+      - Configuracao do Repositorio: "02 - ODP/01-configuracao-repositorio.md"
+      - Instalacao Ambari: "02 - ODP/02-instalacao-ambari.md"
       - Componentes: "02 - ODP/03.0-configuracao-servicos-componentes.md"
-      - Configuração Serviços: "02 - ODP/03.1-configuracao-servicos.md"
-      - Pós-instalação: "02 - ODP/04-instalacao-interface.md"
+      - Configuracao Servicos: "02 - ODP/03.1-configuracao-servicos.md"
+      - Pos-instalacao: "02 - ODP/04-instalacao-interface.md"
       - Problemas Conhecidos: "02 - ODP/XX-problemas-conhecidos.md"
   - CDP:
       - Resumo Executivo: "03 - CDP/01-resumo-executivo.md"
-      - Guia Técnico: "03 - CDP/02-guia-tecnico-automacao.md"
+      - Guia Tecnico: "03 - CDP/02-guia-tecnico-automacao.md"
       - Manual de Debug: "03 - CDP/03-manual-debug.md"
       - Arquitetura e Fluxo: "03 - CDP/04-arquitetura-fluxo.md"
       - Senhas e Credenciais: "03 - CDP/05-senhas-credenciais.md"
-      - Scripts de Referência: "03 - CDP/06-scripts-referencia.md"
+      - Scripts de Referencia: "03 - CDP/06-scripts-referencia.md"
       - Deploy via OCI Stacks: "03 - CDP/07-guia-deploy-oci-stacks.md"
-      - Mudança de IP: "03 - CDP/08-mudanca-ip-passo-a-passo.md"
+      - Mudanca de IP: "03 - CDP/08-mudanca-ip-passo-a-passo.md"
       - Infrastructure Profiles: "03 - CDP/09-profiles_documentation.md"
