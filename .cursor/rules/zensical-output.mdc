@@ -1,0 +1,21 @@
+---
+description: Proibe output do Zensical dentro de docs/assets
+alwaysApply: true
+---
+
+# Output do Zensical
+
+`docs/assets/` e fonte preparada por `scripts/prepare-docs.sh`. Nunca e destino de build do Zensical.
+
+## Destino correto
+
+| Comando | Destino |
+|---------|---------|
+| `zensical serve` | `public/` (`site_dir` em `mkdocs.yml`) |
+| `zensical build --strict --clean` | `public/` |
+
+## Antes de concluir
+
+```bash
+bash scripts/check-docs-assets.sh
+```

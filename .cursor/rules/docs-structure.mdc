@@ -1,0 +1,27 @@
+---
+description: Estrutura atual de docs/ e contrato de tags
+globs: docs/**/*.md,mkdocs.yml
+---
+
+# Estrutura de docs/ (leva atual)
+
+Paths com espacos e prefixos numericos permanecem. Nao renomear pastas nesta leva.
+
+```
+docs/
+  index.md
+  00 - Visão Geral/
+  01 - OCI/
+  02 - ODP/
+  03 - CDP/
+```
+
+## Tags (contrato do exemplo TCC)
+
+1. Catalogo em `mkdocs.yml`: `extra.tags` (rotulo para slug) e `theme.icon.tag`.
+2. Frontmatter por pagina usa o **rotulo** exato do catalogo.
+3. Campos permitidos no frontmatter: `description`, `icon`, `tags`, `status` opcional.
+4. Ao retaggear, nao editar o corpo MD abaixo do H1.
+5. Tag nova exige atualizar `extra.tags` e `theme.icon.tag` antes do frontmatter.
+
+Rotulos atuais: Onboarding, Visao Geral, OCI, ODP, CDP, Automacao, Debug, Credenciais, Artefatos, Infra, Documentacao, Zensical.

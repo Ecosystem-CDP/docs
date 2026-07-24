@@ -5,6 +5,27 @@ Este repositório contém a documentação e os scripts para a criação de um c
 
 > Atenção: todos os valores sensíveis (OCIDs, endereços IP, nomes de VCN, senhas) estão representados por **placeholders**. Substitua-os antes de executar qualquer comando.
 
+## Build da documentacao (Zensical)
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+bash scripts/prepare-docs.sh
+zensical serve
+```
+
+Producao:
+
+```bash
+bash scripts/prepare-docs.sh
+bash scripts/check-docs-assets.sh
+bash scripts/check-doc-links.sh
+zensical build --strict --clean
+```
+
+O site e gerado em `public/`. Ver tambem [AGENTS.md](./AGENTS.md).
+
 ## Sumário
 
 1. [Visão Geral](./docs/00%20-%20Visão%20Geral)
@@ -12,7 +33,6 @@ Este repositório contém a documentação e os scripts para a criação de um c
 3. [Implantação Manual (Didática)](./docs/01%20-%20OCI)
 4. [Anexos](./assets)
 
----
 
 ## Implantação Automatizada (Recomendado)
 
