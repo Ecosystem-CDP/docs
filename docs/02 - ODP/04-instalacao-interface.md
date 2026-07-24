@@ -1,3 +1,9 @@
+---
+description: Pos-instalacao e interfaces do cluster ODP.
+icon: lucide/layout-dashboard
+tags:
+  - ODP
+---
 # 04 - Pós-instalação: Instalação e Configuração dos Serviços (um a um)
 
 Este documento orienta a instalação dos serviços restantes do cluster via Ambari, após a base já provisionada no documento 03 (ZooKeeper, HDFS, YARN + MapReduce2 e Tez). O foco é executar os procedimentos pela interface do Ambari; use linha de comando apenas quando explicitamente indicado.

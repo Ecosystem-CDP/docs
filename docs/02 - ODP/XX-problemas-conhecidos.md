@@ -1,3 +1,10 @@
+---
+description: Problemas conhecidos e troubleshooting da instalacao ODP.
+icon: lucide/circle-alert
+tags:
+  - ODP
+  - Debug
+---
 # XX • problemas-conhecidos
 
 ### 1. Inserção manual da chave pública SSH

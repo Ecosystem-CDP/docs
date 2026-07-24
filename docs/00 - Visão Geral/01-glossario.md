@@ -1,3 +1,10 @@
+---
+description: Glossario de termos e siglas usados na documentacao.
+icon: lucide/library
+tags:
+  - Visao Geral
+  - Onboarding
+---
 # 01 • Glossário de Termos e Siglas
 
 Este glossário reúne definições dos principais termos, siglas e tecnologias citados ao longo da documentação do projeto.

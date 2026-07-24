@@ -1,3 +1,10 @@
+---
+description: Pre-requisitos e sequencia para preparar o ambiente na OCI.
+icon: lucide/cloud
+tags:
+  - OCI
+  - Infra
+---
 # 00 • Pré-requisitos para OCI
 
 ## 1. Criação da conta

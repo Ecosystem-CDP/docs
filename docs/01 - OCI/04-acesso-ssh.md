@@ -1,3 +1,10 @@
+---
+description: Acesso SSH as instancias do cluster.
+icon: lucide/terminal
+tags:
+  - OCI
+  - Infra
+---
 # 04 • Acesso via OpenSSH às Máquinas Virtuais
 
 Após criar suas instâncias na Oracle Cloud Infrastructure (OCI) e informar a chave pública SSH durante a criação, você poderá acessá-las remotamente a partir do seu computador local.

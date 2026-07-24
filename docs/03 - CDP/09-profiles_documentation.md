@@ -1,3 +1,10 @@
+---
+description: Profiles de infraestrutura e distribuicao de componentes.
+icon: lucide/layers
+tags:
+  - CDP
+  - Artefatos
+---
 # CDP Infrastructure Profiles
 
 This document details the component distribution for each available infrastructure profile.

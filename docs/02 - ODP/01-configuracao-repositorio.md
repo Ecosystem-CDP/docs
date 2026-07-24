@@ -1,3 +1,9 @@
+---
+description: Configuracao dos repositorios Clemlab/ODP.
+icon: lucide/package
+tags:
+  - ODP
+---
 # 01 -  Configuração do Repositório ODP e Instalação do Ambari/ODP
 
 Este documento detalha como configurar os repositórios oficiais da Clemlab para **Oracle Linux 9 ARM64** e instalar os componentes Ambari Server, Ambari Agent e ODP Stack.

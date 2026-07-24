@@ -1,3 +1,9 @@
+---
+description: Instalacao do Apache Ambari no cluster ODP.
+icon: lucide/server
+tags:
+  - ODP
+---
 # 02 -  Instalação e Configuração Básica do Ambari
 
 Esta etapa cobre a instalação e configuração inicial do Ambari Server e Ambari Agent em **Oracle Linux 9 ARM64**, preparando o ambiente para provisionar serviços Hadoop/Spark via interface web.

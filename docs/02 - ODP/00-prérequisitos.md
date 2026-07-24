@@ -1,3 +1,9 @@
+---
+description: Pre-requisitos de hardware, rede e SO para instalar ODP.
+icon: lucide/database
+tags:
+  - ODP
+---
 # 00 -  Pré-requisitos
 
 Este documento descreve todos os requisitos mínimos — de infraestrutura, software e acesso — para que a instalação da OpenSource Data Platform (ODP) 1.2.4.0 seja feita em qualquer ambiente Oracle Cloud Infrastructure (OCI) ou em servidores bare-metal compatíveis, usando **Oracle Linux 9** em **arquitetura ARM64**.

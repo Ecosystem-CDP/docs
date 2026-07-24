@@ -1,3 +1,10 @@
+---
+description: Resumo executivo da automacao do cluster Ambari/ODP.
+icon: lucide/workflow
+tags:
+  - CDP
+  - Automacao
+---
 # 01 - Resumo Executivo: Automação de Cluster Ambari (ODP)
 
 ##  Objetivo do Projeto

@@ -1,3 +1,10 @@
+---
+description: Procedimento passo a passo para mudanca de IP no cluster.
+icon: lucide/map-pin
+tags:
+  - CDP
+  - Debug
+---
 # 08 - Mudança de IP (Passo a Passo)
 
 Este guia descreve os passos necessários para atualizar as regras de segurança na Oracle Cloud Infrastructure (OCI) quando o seu endereço IP público muda. Isso é comum para quem trabalha de home office ou utiliza conexões de internet com IPs dinâmicos.

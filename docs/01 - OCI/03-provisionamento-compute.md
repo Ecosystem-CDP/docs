@@ -1,3 +1,10 @@
+---
+description: Provisionamento das instancias de compute do cluster.
+icon: lucide/server
+tags:
+  - OCI
+  - Infra
+---
 # 03 • Provisionamento das Máquinas Virtuais
 
 ## 1. Geração de Chaves SSH para Acesso às Instâncias

@@ -1,3 +1,10 @@
+---
+description: Deploy do cluster via OCI Resource Manager Stacks.
+icon: lucide/cloud-upload
+tags:
+  - CDP
+  - Automacao
+---
 # 07 - Guia de Deploy via OCI Stacks (Resource Manager)
 
 A maneira recomendada de realizar o deploy deste projeto na Oracle Cloud é utilizando o serviço **Resource Manager (Stacks)**. Isso permite que você faça upload do código Terraform e utilize uma interface gráfica amigável para configurar as variáveis, sem precisar instalar o Terraform localmente ou rodar comandos no terminal.

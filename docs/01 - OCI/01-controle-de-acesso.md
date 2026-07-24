@@ -1,3 +1,10 @@
+---
+description: Compartimentos e controle de acesso basico na OCI.
+icon: lucide/shield
+tags:
+  - OCI
+  - Infra
+---
 # 01 • Controle de Acesso
 
 ## 1. Criação do Compartimento

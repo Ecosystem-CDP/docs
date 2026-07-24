@@ -1,3 +1,10 @@
+---
+description: Scripts de referencia usados no deploy automatizado.
+icon: lucide/file-code
+tags:
+  - CDP
+  - Artefatos
+---
 # 06 - Scripts de Referência
 
 Coleção de scripts "one-liners" e utilitários para operação diária do cluster.

@@ -1,3 +1,10 @@
+---
+description: Documentacao PIBIC do Data Lake CDP na Oracle Cloud Infrastructure.
+icon: lucide/home
+tags:
+  - Onboarding
+  - Documentacao
+---
 # Data Lake CDP — Documentação PIBIC
 
 Bem-vindo(a) à documentação do projeto.

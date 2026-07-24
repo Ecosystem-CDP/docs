@@ -1,3 +1,10 @@
+---
+description: VCN, subnets, Security Lists e NSG para o cluster.
+icon: lucide/network
+tags:
+  - OCI
+  - Infra
+---
 # 02 • Rede e Segurança
 
 ## 1. Criação da Virtual Cloud Network (VCN)

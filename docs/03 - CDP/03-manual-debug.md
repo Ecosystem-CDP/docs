@@ -1,3 +1,10 @@
+---
+description: Manual de debug e intervencao manual no cluster automatizado.
+icon: lucide/bug
+tags:
+  - CDP
+  - Debug
+---
 # 03 - Manual de Debug e Intervenção
 
 Este documento serve como referência para quando a automação falhar ou quando for necessária uma intervenção manual no cluster.

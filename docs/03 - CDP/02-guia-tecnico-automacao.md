@@ -1,3 +1,10 @@
+---
+description: Guia tecnico de Terraform, Ansible e Ambari Blueprint.
+icon: lucide/boxes
+tags:
+  - CDP
+  - Automacao
+---
 # 02 - Guia Técnico de Automação
 
 Este documento detalha o funcionamento técnico da automação do cluster Ambari.

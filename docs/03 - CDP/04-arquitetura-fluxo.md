@@ -1,3 +1,10 @@
+---
+description: Arquitetura e fluxo end-to-end da automacao.
+icon: lucide/git-branch
+tags:
+  - CDP
+  - Automacao
+---
 # 04 - Arquitetura e Fluxo de Automação
 
 ##  Fluxo de Provisionamento (End-to-End)

@@ -1,3 +1,10 @@
+---
+description: Credenciais e senhas padrao do ambiente de PoC.
+icon: lucide/key-round
+tags:
+  - CDP
+  - Credenciais
+---
 # 05 - Credenciais e Senhas
 
 Este documento registra as credenciais padrão configuradas nos scripts de automação.

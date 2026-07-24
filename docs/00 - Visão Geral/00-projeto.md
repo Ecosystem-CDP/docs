@@ -1,3 +1,10 @@
+---
+description: Objetivo, escopo e publico do projeto Data Lake open source na OCI.
+icon: lucide/book-open
+tags:
+  - Visao Geral
+  - Onboarding
+---
 # 00 • Projeto: Data Lake Open Source na Oracle Cloud Infrastructure
 
 ## 1. Objetivo

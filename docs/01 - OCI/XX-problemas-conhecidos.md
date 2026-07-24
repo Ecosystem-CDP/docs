@@ -1,3 +1,10 @@
+---
+description: Problemas conhecidos e troubleshooting da infraestrutura OCI.
+icon: lucide/circle-alert
+tags:
+  - OCI
+  - Debug
+---
 # Problemas Conhecidos e Troubleshooting Avançado (OCI)
 
 Este documento centraliza problemas técnicos complexos que podem afetar o acesso e a operação da infraestrutura na Oracle Cloud Infrastructure, detalhando sintomas, diagnósticos e soluções.
