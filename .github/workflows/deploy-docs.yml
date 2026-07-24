@@ -1,4 +1,4 @@
-name: Deploy MkDocs to GitHub Pages
+name: Deploy Zensical to GitHub Pages
 
 on:
   push:
@@ -30,16 +30,22 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Prepare shared assets for MkDocs link validation
-        run: rm -rf docs/assets && cp -R assets docs/assets
+      - name: Prepare docs assets and brand
+        run: bash scripts/prepare-docs.sh
+
+      - name: Check docs assets layout
+        run: bash scripts/check-docs-assets.sh
+
+      - name: Check documentation links
+        run: bash scripts/check-doc-links.sh
 
       - name: Build documentation
-        run: mkdocs build --strict
+        run: zensical build --strict --clean
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: public
 
   deploy:
     needs: build
